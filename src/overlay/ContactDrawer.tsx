@@ -45,17 +45,17 @@ export function ContactDrawer() {
         <div className="md:w-5/12 flex flex-col justify-between">
           <div>
             <span className="px-3 py-1 rounded-full bg-white/10 text-current text-[11px] font-mono font-semibold tracking-wider inline-block mb-4 border border-white/10">
-              CONNECT // 2026
+              DIRECT // INBOX
             </span>
             <h3 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
-              Let's Build Together.
+              Start a Conversation.
             </h3>
             <p className="text-sm opacity-80 leading-relaxed mb-6 font-medium">
-              Direct callout for project inquiries, custom graphic web design, and mobile-grade app development. Available for selected commissions and technical partnerships.
+              I am available for bespoke web designs, mobile applications, and technical partnerships. Drop a note below or reach out directly to my personal email.
             </p>
 
             <div className="space-y-3 mb-8">
-              <div className="text-xs font-mono opacity-60">DIRECT CHANNELS</div>
+              <div className="text-xs font-mono opacity-60">PERSONAL CHANNELS</div>
               <a
                 href="mailto:ashley@docuready.dev"
                 className="flex items-center gap-2 text-sm font-semibold hover:underline text-current"
@@ -65,7 +65,7 @@ export function ContactDrawer() {
               </a>
               <div className="flex items-center gap-2 text-xs font-mono opacity-80">
                 <MapPin className="w-3.5 h-3.5 text-emerald-400" />
-                <span>MAHARASHTRA, INDIA & REMOTE</span>
+                <span>MAHARASHTRA, INDIA &bull; REMOTE GLOBALLY</span>
               </div>
             </div>
           </div>
@@ -181,10 +181,10 @@ export function ContactDrawer() {
                 className="w-full py-3.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white text-xs font-mono font-bold tracking-wider uppercase flex items-center justify-center gap-2 active:scale-[0.99] transition-all shadow-md disabled:opacity-50 cursor-pointer"
               >
                 {isSubmitting ? (
-                  <span>TRANSMITTING INQUIRY...</span>
+                  <span>TRANSMITTING MESSAGE...</span>
                 ) : (
                   <>
-                    <span>DISPATCH PROJECT INQUIRY</span>
+                    <span>SEND MESSAGE TO ASHLEY</span>
                     <Send className="w-3.5 h-3.5" />
                   </>
                 )}

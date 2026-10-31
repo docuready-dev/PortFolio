@@ -3,11 +3,11 @@ import { Sun, Moon } from 'lucide-react'
 import { usePortfolioStore } from '../store'
 
 const NAV_ITEMS = [
-  { label: 'Hero', id: 'hero' },
+  { label: 'About', id: 'hero' },
   { label: 'Approach', id: 'approach' },
   { label: 'Web', id: 'web' },
   { label: 'Apps', id: 'apps' },
-  { label: 'Works', id: 'works' },
+  { label: 'Projects', id: 'works' },
   { label: 'Contact', id: 'contact' },
 ]
 
