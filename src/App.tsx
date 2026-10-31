@@ -3,7 +3,7 @@ import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'
 import { NavigationBar } from './overlay/NavigationBar'
 import { HtmlOverlay } from './overlay/HtmlOverlay'
-import { ProjectModal } from './overlay/ProjectModal'
+import { ImageLightbox } from './overlay/ImageLightbox'
 import { usePortfolioStore } from './store'
 
 export default function App() {
@@ -89,8 +89,8 @@ export default function App() {
       {/* Floating Centered Minimalist Navigation Bar */}
       <NavigationBar />
 
-      {/* Case Study Modal Overlay */}
-      <ProjectModal />
+      {/* Full-Screen Image Lightbox (Click to View Screenshot) */}
+      <ImageLightbox />
 
       {/* Main Left-Aligned Smooth Scrolling Content Stream */}
       <main className="w-full">

@@ -17,7 +17,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Delight', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        delight: ['Delight', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       backdropBlur: {

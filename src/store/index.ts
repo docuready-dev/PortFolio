@@ -139,9 +139,16 @@ export const FLAGSHIP_PROJECTS: ProjectItem[] = [
   },
 ]
 
+export interface ActiveImage {
+  src: string
+  title: string
+  subtitle?: string
+}
+
 export interface PortfolioState {
   projects: ProjectItem[]
   activeProject: ProjectItem | null
+  activeImage: ActiveImage | null
   scrollProgress: number
   scrollVelocity: number
   activeDomain: CreativeDomain | 'all'
@@ -152,6 +159,7 @@ export interface PortfolioState {
   blurIntensity: 'frosted' | 'deep'
   theme: 'dark' | 'light'
   setActiveProject: (project: ProjectItem | null) => void
+  setActiveImage: (image: ActiveImage | null) => void
   setScrollProgress: (progress: number, velocity?: number) => void
   setActiveDomain: (domain: CreativeDomain | 'all') => void
   setDpr: (dpr: number) => void
@@ -165,6 +173,7 @@ export interface PortfolioState {
 export const usePortfolioStore = create<PortfolioState>((set) => ({
   projects: FLAGSHIP_PROJECTS,
   activeProject: null,
+  activeImage: null,
   scrollProgress: 0,
   scrollVelocity: 0,
   activeDomain: 'all',
@@ -175,6 +184,7 @@ export const usePortfolioStore = create<PortfolioState>((set) => ({
   blurIntensity: 'frosted',
   theme: 'dark',
   setActiveProject: (project) => set({ activeProject: project }),
+  setActiveImage: (image) => set({ activeImage: image }),
   setScrollProgress: (progress, velocity = 0) =>
     set({ scrollProgress: progress, scrollVelocity: velocity }),
   setActiveDomain: (domain) => set({ activeDomain: domain }),

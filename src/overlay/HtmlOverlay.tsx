@@ -1,25 +1,51 @@
-import {
-  Sparkles,
-  ArrowRight,
-  Layers,
-  Cpu,
-  Smartphone,
-  Award,
-  Mail,
-  ExternalLink,
-  Code2,
-  Palette,
-  Server,
-  ArrowUpRight,
-} from 'lucide-react'
 import { ContactDrawer } from './ContactDrawer'
 import { usePortfolioStore } from '../store'
 
 export function HtmlOverlay() {
   const theme = usePortfolioStore((s) => s.theme)
-  const projects = usePortfolioStore((s) => s.projects)
-  const setActiveProject = usePortfolioStore((s) => s.setActiveProject)
+  const setActiveImage = usePortfolioStore((s) => s.setActiveImage)
   const isDark = theme === 'dark'
+
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '')
+
+  const strovrScreenshots = [
+    {
+      id: 'dashboard',
+      title: 'Strovr — Command Dashboard',
+      subtitle: 'Real-time pipeline metrics, lead generation & outreach telemetry',
+      src: `${base}/screenshots/strovr/01-dashboard-full.png`,
+    },
+    {
+      id: 'email-studio',
+      title: 'Strovr — Email Studio & Template Builder',
+      subtitle: 'Dynamic responsive email creation and automated campaign dispatch',
+      src: `${base}/screenshots/strovr/01-outreach-email-studio.png`,
+    },
+    {
+      id: 'crm-kanban',
+      title: 'Strovr — CRM Pipeline & Kanban Board',
+      subtitle: 'Interactive lead staging, contact interaction sheets & deal tracking',
+      src: `${base}/screenshots/strovr/06-crm-kanban-board.png`,
+    },
+    {
+      id: 'analytics',
+      title: 'Strovr — Analytics & Performance Insights',
+      subtitle: 'Deliverability analytics, click tracking & conversion metrics',
+      src: `${base}/screenshots/strovr/01-analytics-overview.png`,
+    },
+    {
+      id: 'automations',
+      title: 'Strovr — Automated Sequences & Workflows',
+      subtitle: 'Event-driven multi-step outreach pipelines with SerpApi hooks',
+      src: `${base}/screenshots/strovr/01-automations-workflows.png`,
+    },
+    {
+      id: 'integrations',
+      title: 'Strovr — Integrations Hub',
+      subtitle: 'Cloud webhooks, third-party CRM connectors & data pipes',
+      src: `${base}/screenshots/strovr/01-integrations-hub-full.png`,
+    },
+  ]
 
   const handleJump = (id: string) => {
     const el = document.getElementById(id)
@@ -33,94 +59,86 @@ export function HtmlOverlay() {
   }
 
   return (
-    <div className={`w-full text-left ${isDark ? 'text-[#F4F3EF]' : 'text-[#111115]'}`}>
+    <div className={`w-full text-left font-sans ${isDark ? 'text-[#F4F3EF]' : 'text-[#111115]'}`}>
       {/* ============================================================ */}
       {/* SECTION 1: HERO / INTRO                                       */}
       {/* ============================================================ */}
       <section
         id="hero"
-        className="min-h-screen w-full flex flex-col justify-start pt-24 sm:pt-28 md:pt-32 pb-16 px-6 sm:px-12 md:px-16 lg:px-24 max-w-7xl mx-auto text-left"
+        className="min-h-screen w-full flex flex-col justify-start pt-28 sm:pt-36 md:pt-40 pb-20 px-6 sm:px-12 md:px-16 lg:px-24 max-w-7xl mx-auto text-left"
       >
-        {/* Personal Identity & Devanagari Pill */}
-        <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border mb-5 text-xs font-mono font-semibold tracking-wider uppercase w-fit transition-colors duration-200 border-current/20 bg-current/5">
-          <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-          <span className="font-bold">Ashley Ajoy Ghose</span>
-          <span className="opacity-40">&bull;</span>
-          <span className="font-devanagari text-amber-500 font-bold tracking-normal text-sm">
-            ॲशले घोष
-          </span>
-          <span className="opacity-40 hidden sm:inline">&bull;</span>
-          <span className="opacity-70 text-[11px] hidden sm:inline">Maharashtra, IN</span>
+        {/* Simple Identity Line - No icons, no frames */}
+        <div className="mb-8 text-xs sm:text-sm font-mono tracking-wider uppercase opacity-60">
+          <span>Ashley Ajoy Ghose</span>
+          <span className="mx-2">&bull;</span>
+          <span className="font-devanagari font-bold text-sm">ॲशले घोष</span>
+          <span className="mx-2">&bull;</span>
+          <span>Maharashtra, India</span>
         </div>
 
-        {/* Main Personal Headline */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[1.0] mb-5 max-w-4xl">
-          Code, craft, and <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-amber-400">
-            digital architecture.
-          </span>
+        {/* Display Headline - Solid editorial typography with Delight, zero gradient text */}
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight leading-[0.98] mb-8 max-w-5xl">
+          Code, craft, and digital architecture.
         </h1>
 
-        {/* Author Bio Statement */}
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl font-normal leading-relaxed opacity-90 mb-7 max-w-3xl">
+        {/* Bio Introduction */}
+        <p className="text-base sm:text-xl md:text-2xl font-normal leading-relaxed opacity-90 mb-10 max-w-3xl">
           I am <strong className="font-semibold text-current">Ashley Ajoy Ghose</strong>, a
           multidisciplinary developer and designer based out of Maharashtra. I build
           high-impact graphic web designs and robust mobile applications that bridge raw
           technical engineering with striking visual identity.
         </p>
 
-        {/* Personal CTAs */}
-        <div className="flex flex-wrap items-center gap-3.5 mb-8">
+        {/* Action Links - Clean editorial buttons, no icons */}
+        <div className="flex flex-wrap items-center gap-4 mb-16">
           <button
             onClick={() => handleJump('works')}
-            className="px-6 py-3 rounded-full bg-indigo-500 hover:bg-indigo-400 text-white font-semibold text-sm transition-all duration-200 flex items-center gap-2 shadow-lg shadow-indigo-500/25 cursor-pointer hover:gap-3"
+            className={`px-8 py-3.5 rounded text-xs font-mono font-bold tracking-wider uppercase transition-opacity cursor-pointer ${
+              isDark
+                ? 'bg-white text-[#0B0B0E] hover:opacity-90'
+                : 'bg-[#111115] text-[#F4F3EF] hover:opacity-90'
+            }`}
           >
-            <span>Explore My Works</span>
-            <ArrowRight className="w-4 h-4 transition-transform duration-200" />
+            Explore My Works
           </button>
           <button
             onClick={() => handleJump('contact')}
-            className={`px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 flex items-center gap-2 border cursor-pointer ${
+            className={`px-8 py-3.5 rounded text-xs font-mono font-bold tracking-wider uppercase transition-colors cursor-pointer ${
               isDark
-                ? 'bg-white/5 hover:bg-white/15 border-white/20 text-[#F4F3EF]'
-                : 'bg-black/5 hover:bg-black/10 border-black/15 text-[#111115]'
+                ? 'bg-white/10 text-white hover:bg-white/20'
+                : 'bg-black/5 text-[#111115] hover:bg-black/10'
             }`}
           >
-            <span>Get in Touch With Me</span>
-            <Mail className="w-4 h-4 text-amber-400" />
+            Get in Touch
           </button>
         </div>
 
-        {/* Personal Details & Availability Bar */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 border-t border-current/15 font-mono text-xs max-w-3xl">
-          <div className="p-3.5 rounded-2xl border border-current/10 bg-current/5">
-            <div className="text-[10px] opacity-60 uppercase font-semibold">Specialization</div>
-            <div className="font-semibold mt-0.5 text-xs sm:text-sm">Graphic Web Design &bull; Mobile Apps</div>
+        {/* Editorial Information Columns - No card frames */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-current/15 font-mono text-xs max-w-4xl">
+          <div>
+            <div className="text-[10px] uppercase tracking-wider opacity-50 mb-1">Specialization</div>
+            <div className="font-semibold text-sm">Graphic Web &bull; Mobile Apps</div>
           </div>
-          <div className="p-3.5 rounded-2xl border border-current/10 bg-current/5">
-            <div className="text-[10px] opacity-60 uppercase font-semibold">Primary Stack</div>
-            <div className="font-semibold mt-0.5 text-xs sm:text-sm">React &bull; Node.js &bull; TypeScript</div>
+          <div>
+            <div className="text-[10px] uppercase tracking-wider opacity-50 mb-1">Core Stack</div>
+            <div className="font-semibold text-sm">React &bull; Node.js &bull; TypeScript</div>
           </div>
-          <div className="p-3.5 rounded-2xl border border-current/10 bg-current/5">
-            <div className="text-[10px] opacity-60 uppercase font-semibold">Status</div>
-            <div className="font-semibold mt-0.5 text-xs sm:text-sm flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Available for Projects</span>
-            </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-wider opacity-50 mb-1">Availability</div>
+            <div className="font-semibold text-sm">Open for Projects &bull; 2026</div>
           </div>
         </div>
       </section>
 
       {/* ============================================================ */}
-      {/* SECTION 2: ABOUT ME & PHILOSOPHY                              */}
+      {/* SECTION 2: ABOUT & CRAFT                                      */}
       {/* ============================================================ */}
       <section
         id="approach"
         className="min-h-screen w-full flex flex-col justify-center py-28 sm:py-36 px-6 sm:px-12 md:px-16 lg:px-24 max-w-7xl mx-auto text-left border-t border-current/15"
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-current/20 bg-current/5 text-xs font-mono font-semibold tracking-wider uppercase mb-6 w-fit">
-          <Layers className="w-3.5 h-3.5 text-amber-500" />
-          <span>01 // ABOUT ME & MY CRAFT</span>
+        <div className="text-xs font-mono tracking-wider uppercase opacity-50 mb-4">
+          01. About Me & Craft
         </div>
 
         <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-8 leading-tight">
@@ -132,302 +150,291 @@ export function HtmlOverlay() {
           Bridging the gap between aesthetic visual design and robust engineering.
         </p>
 
-        <p className="text-sm sm:text-base opacity-70 leading-relaxed max-w-3xl mb-14">
-          I treat design and code as two complementary halves of the same creative craft.
+        <p className="text-base sm:text-lg opacity-75 leading-relaxed max-w-3xl mb-16">
+          I view design and code as two complementary halves of the same creative craft.
           Too often, visually striking designs lack engineering depth, or technically solid
-          applications feel clunky and uninspired. My focus is combining Swiss typographic
+          applications feel clunky and uninspired. My approach is combining Swiss typographic
           discipline, tactile micro-interactions, and scalable cloud architectures so every
           product feels memorable, fast, and effortless to use.
         </p>
 
-        {/* Three Core Skills & Disciplines */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-6 rounded-2xl border border-current/15 bg-current/5 flex flex-col justify-between group hover:border-pink-500/50 transition-colors">
-            <div>
-              <Palette className="w-6 h-6 text-pink-400 mb-4" />
-              <h3 className="text-lg font-bold font-mono mb-2">Design & Visual Systems</h3>
-              <p className="text-xs sm:text-sm opacity-70 leading-relaxed mb-4">
-                Designing tailored visual identities in Figma and Adobe Illustrator. Strict typographic scales, cohesive color palettes, and reusable component libraries.
-              </p>
-            </div>
-            <div className="pt-4 border-t border-current/10 text-[11px] font-mono opacity-60">
-              FIGMA &bull; ILLUSTRATOR &bull; UI/UX
-            </div>
+        {/* Three Editorial Columns - No card outlines/frames */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pt-8 border-t border-current/15">
+          <div>
+            <div className="text-xs font-mono uppercase tracking-wider opacity-50 mb-2">01</div>
+            <h3 className="text-xl font-bold mb-3">Design Systems</h3>
+            <p className="text-sm opacity-75 leading-relaxed">
+              Designing bespoke visual systems in Figma and Adobe Illustrator. Precise typographic scales, cohesive color palettes, and component modularity.
+            </p>
           </div>
 
-          <div className="p-6 rounded-2xl border border-current/15 bg-current/5 flex flex-col justify-between group hover:border-blue-500/50 transition-colors">
-            <div>
-              <Code2 className="w-6 h-6 text-blue-400 mb-4" />
-              <h3 className="text-lg font-bold font-mono mb-2">Frontend Craft</h3>
-              <p className="text-xs sm:text-sm opacity-70 leading-relaxed mb-4">
-                Translating intricate designs into responsive, sub-100ms web applications using React, Vite, Tailwind CSS, and TypeScript with fluid motion.
-              </p>
-            </div>
-            <div className="pt-4 border-t border-current/10 text-[11px] font-mono opacity-60">
-              REACT &bull; VITE &bull; TAILWIND &bull; TS
-            </div>
+          <div>
+            <div className="text-xs font-mono uppercase tracking-wider opacity-50 mb-2">02</div>
+            <h3 className="text-xl font-bold mb-3">Frontend Engineering</h3>
+            <p className="text-sm opacity-75 leading-relaxed">
+              Translating ideas into fluid web applications using React, Vite, Tailwind CSS, and TypeScript with fast sub-100ms interactions.
+            </p>
           </div>
 
-          <div className="p-6 rounded-2xl border border-current/15 bg-current/5 flex flex-col justify-between group hover:border-emerald-500/50 transition-colors">
-            <div>
-              <Server className="w-6 h-6 text-emerald-400 mb-4" />
-              <h3 className="text-lg font-bold font-mono mb-2">Backend & Cloud</h3>
-              <p className="text-xs sm:text-sm opacity-70 leading-relaxed mb-4">
-                Architecting resilient backends with Node.js, Express, Firebase Firestore, and MongoDB Atlas. Real-time data sync, secure APIs, and clean serverless functions.
-              </p>
-            </div>
-            <div className="pt-4 border-t border-current/10 text-[11px] font-mono opacity-60">
-              NODE &bull; EXPRESS &bull; FIREBASE &bull; MONGO
-            </div>
+          <div>
+            <div className="text-xs font-mono uppercase tracking-wider opacity-50 mb-2">03</div>
+            <h3 className="text-xl font-bold mb-3">Backend & Cloud</h3>
+            <p className="text-sm opacity-75 leading-relaxed">
+              Building dependable architectures with Node.js, Express, Firebase Firestore, and MongoDB Atlas for real-time synchronization.
+            </p>
           </div>
         </div>
       </section>
 
       {/* ============================================================ */}
-      {/* SECTION 3: WEB PLATFORMS I'VE BUILT                           */}
+      {/* SECTION 3: STROVR SHOWCASE WITH REAL SCREENSHOTS               */}
       {/* ============================================================ */}
       <section
         id="web"
         className="min-h-screen w-full flex flex-col justify-center py-28 sm:py-36 px-6 sm:px-12 md:px-16 lg:px-24 max-w-7xl mx-auto text-left border-t border-current/15"
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-current/20 bg-current/5 text-xs font-mono font-semibold tracking-wider uppercase mb-6 w-fit">
-          <Cpu className="w-3.5 h-3.5 text-blue-400" />
-          <span>02 // WEB PLATFORMS I'VE BUILT</span>
+        <div className="text-xs font-mono tracking-wider uppercase opacity-50 mb-4">
+          02. Featured Showcase
         </div>
 
-        <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-6 leading-tight">
-          Web Platforms I've Built.
-        </h2>
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+          <div>
+            <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-4 leading-tight">
+              Strovr
+            </h2>
+            <p className="text-lg sm:text-2xl font-light opacity-85 leading-relaxed max-w-3xl">
+              An all-in-one growth platform featuring dynamic email marketing templates, automated lead extraction via SerpApi, and an intuitive customer relationship management workflow.
+            </p>
+          </div>
+          <div className="text-xs font-mono opacity-60">
+            <a
+              href="https://strovr.space"
+              target="_blank"
+              rel="noreferrer"
+              className="underline hover:opacity-100"
+            >
+              strovr.space ↗
+            </a>
+          </div>
+        </div>
 
-        <p className="text-lg sm:text-2xl font-light opacity-85 leading-relaxed max-w-3xl mb-12">
-          Two major platforms I've conceived, designed, and engineered from scratch: <strong className="text-blue-400 font-semibold">Strovr</strong> and <strong className="text-emerald-400 font-semibold">LearnReady</strong>. Clean modular architecture, instant sub-second transitions, and real utility.
+        <p className="text-xs font-mono uppercase tracking-wider opacity-50 mb-6">
+          Click any screenshot below to inspect full view
         </p>
 
-        {/* Showcase Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-          {/* Strovr Spotlight Card */}
-          <div className="p-8 rounded-3xl border border-current/15 bg-current/5 flex flex-col justify-between hover:border-blue-500/50 transition-all duration-300">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">
-                  FLAGSHIP 01 &bull; GROWTH SAAS
-                </span>
-                <a
-                  href="https://strovr.space"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold hover:underline text-blue-400"
-                >
-                  <span>strovr.space</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
+        {/* Real Screenshots Grid - Pure image showcase, NO CARDS, NO FRAMES, click to open lightbox */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {strovrScreenshots.map((shot) => (
+            <div
+              key={shot.id}
+              onClick={() => setActiveImage(shot)}
+              className="group cursor-zoom-in text-left"
+            >
+              <div className="overflow-hidden rounded-md bg-black/20 aspect-video mb-3">
+                <img
+                  src={shot.src}
+                  alt={shot.title}
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
               </div>
-
-              <h3 className="text-2xl sm:text-3xl font-bold mb-3">
-                Strovr
+              <h3 className="text-base font-bold group-hover:underline transition-all">
+                {shot.title}
               </h3>
-              <p className="text-sm sm:text-base opacity-80 leading-relaxed mb-6 font-medium">
-                An all-in-one growth platform I designed and engineered featuring dynamic email marketing templates, automated lead extraction via SerpApi, and an intuitive customer relationship management workflow.
+              <p className="text-xs opacity-70 mt-1 leading-relaxed">
+                {shot.subtitle}
               </p>
-
-              <div className="flex flex-wrap gap-2 mb-6">
-                {['React', 'Vite', 'Node.js', 'Express', 'Firebase', 'SerpApi'].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2.5 py-1 rounded-md text-xs font-mono border border-current/15 bg-current/5"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </div>
-
-            <div className="pt-4 border-t border-current/10 flex items-center justify-between text-xs font-mono">
-              <span className="text-blue-400 font-semibold">&lt; 100ms Reactive Pacing</span>
-              <span className="opacity-60">10x Lead Discovery Speed</span>
-            </div>
-          </div>
-
-          {/* LearnReady Spotlight Card */}
-          <div className="p-8 rounded-3xl border border-current/15 bg-current/5 flex flex-col justify-between hover:border-emerald-500/50 transition-all duration-300">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                  FLAGSHIP 02 &bull; EDTECH & AI
-                </span>
-                <span className="text-xs font-mono opacity-60">Active Platform</span>
-              </div>
-
-              <h3 className="text-2xl sm:text-3xl font-bold mb-3">
-                LearnReady
-              </h3>
-              <p className="text-sm sm:text-base opacity-80 leading-relaxed mb-6 font-medium">
-                An interactive educational web application I built to deliver structured course curricula, adaptive chapter progression, and real-time AI-generated competency assessments.
-              </p>
-
-              <div className="flex flex-wrap gap-2 mb-6">
-                {['React', 'Vite', 'Tailwind CSS', 'Node.js', 'Firebase', 'AI Assessment'].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2.5 py-1 rounded-md text-xs font-mono border border-current/15 bg-current/5"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-current/10 flex items-center justify-between text-xs font-mono">
-              <span className="text-emerald-400 font-semibold">100% Custom Engineering</span>
-              <span className="opacity-60">Adaptive Chapter Engine</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Personal Craft Philosophy Metrics */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="p-5 rounded-2xl border border-current/10 bg-current/5">
-            <span className="text-3xl sm:text-4xl font-bold font-mono block text-blue-400">100%</span>
-            <span className="text-xs font-mono opacity-70 uppercase mt-1 block">Full-Stack Ownership</span>
-          </div>
-          <div className="p-5 rounded-2xl border border-current/10 bg-current/5">
-            <span className="text-3xl sm:text-4xl font-bold font-mono block text-emerald-400">&lt; 100ms</span>
-            <span className="text-xs font-mono opacity-70 uppercase mt-1 block">Sub-Second Pacing</span>
-          </div>
-          <div className="p-5 rounded-2xl border border-current/10 bg-current/5">
-            <span className="text-3xl sm:text-4xl font-bold font-mono block text-amber-400">Tactile</span>
-            <span className="text-xs font-mono opacity-70 uppercase mt-1 block">Component Design</span>
-          </div>
-          <div className="p-5 rounded-2xl border border-current/10 bg-current/5">
-            <span className="text-3xl sm:text-4xl font-bold font-mono block text-indigo-400">Bespoke</span>
-            <span className="text-xs font-mono opacity-70 uppercase mt-1 block">Zero Generic Templates</span>
-          </div>
+          ))}
         </div>
       </section>
 
       {/* ============================================================ */}
-      {/* SECTION 4: MOBILE & APP ARCHITECTURE                          */}
+      {/* SECTION 4: MOBILE & APP CRAFT                                 */}
       {/* ============================================================ */}
       <section
         id="apps"
         className="min-h-screen w-full flex flex-col justify-center py-28 sm:py-36 px-6 sm:px-12 md:px-16 lg:px-24 max-w-7xl mx-auto text-left border-t border-current/15"
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-current/20 bg-current/5 text-xs font-mono font-semibold tracking-wider uppercase mb-6 w-fit">
-          <Smartphone className="w-3.5 h-3.5 text-indigo-400" />
-          <span>03 // MOBILE & APP CRAFT</span>
+        <div className="text-xs font-mono tracking-wider uppercase opacity-50 mb-4">
+          03. Mobile Architecture
         </div>
 
         <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-6 leading-tight">
           Fluid Mobile & Custom Apps.
         </h2>
 
-        <p className="text-lg sm:text-2xl font-light opacity-85 leading-relaxed max-w-3xl mb-12">
-          When developing mobile applications and custom web solutions, I prioritize how the interface feels under your thumb. Tactile gesture physics, offline resilience, and fluid 60 FPS transitions make software feel alive.
+        <p className="text-lg sm:text-2xl font-light opacity-85 leading-relaxed max-w-3xl mb-16">
+          When developing mobile applications and custom web solutions, I prioritize tactile interaction. Inertial touch physics, offline resilience, and fluid 60 FPS transitions make software feel alive.
         </p>
 
-        {/* Feature Cards Matrix */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-          <div className="p-6 rounded-2xl border border-current/15 bg-current/5 flex flex-col justify-between">
-            <span className="text-3xl font-bold font-mono block text-indigo-400 mb-2">60 FPS</span>
-            <span className="text-sm font-bold font-mono uppercase">Gesture Physics</span>
-            <p className="text-xs opacity-70 mt-2 leading-relaxed">
-              Inertial touch handling and spring micro-interactions tailored for physical hand ergonomics.
+        {/* 4 Pillars - Clean typography without frames */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-8 border-t border-current/15">
+          <div>
+            <div className="text-2xl font-bold font-mono mb-2">60 FPS</div>
+            <div className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2">Gesture Physics</div>
+            <p className="text-xs opacity-75 leading-relaxed">
+              Inertial touch handling and fluid spring micro-interactions tailored for mobile ergonomics.
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl border border-current/15 bg-current/5 flex flex-col justify-between">
-            <span className="text-3xl font-bold font-mono block text-amber-400 mb-2">Offline First</span>
-            <span className="text-sm font-bold font-mono uppercase">Resilient Sync</span>
-            <p className="text-xs opacity-70 mt-2 leading-relaxed">
+          <div>
+            <div className="text-2xl font-bold font-mono mb-2">Offline First</div>
+            <div className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2">Resilient Sync</div>
+            <p className="text-xs opacity-75 leading-relaxed">
               Local cache persistence backed by cloud Firestore and MongoDB Atlas clusters.
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl border border-current/15 bg-current/5 flex flex-col justify-between">
-            <span className="text-3xl font-bold font-mono block text-emerald-400 mb-2">Mobile-First</span>
-            <span className="text-sm font-bold font-mono uppercase">Responsive Grid</span>
-            <p className="text-xs opacity-70 mt-2 leading-relaxed">
-              Engineered seamlessly from 320px handheld displays to expansive high-DPI desktop viewports.
+          <div>
+            <div className="text-2xl font-bold font-mono mb-2">Responsive</div>
+            <div className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2">Adaptive Grid</div>
+            <p className="text-xs opacity-75 leading-relaxed">
+              Engineered seamlessly from 320px handheld displays to ultrawide desktop monitors.
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl border border-current/15 bg-current/5 flex flex-col justify-between">
-            <span className="text-3xl font-bold font-mono block text-pink-400 mb-2">Bespoke UI</span>
-            <span className="text-sm font-bold font-mono uppercase">Design Systems</span>
-            <p className="text-xs opacity-70 mt-2 leading-relaxed">
-              Tailored visual identities, custom iconography, and strict typographic hierarchy.
+          <div>
+            <div className="text-2xl font-bold font-mono mb-2">Bespoke UI</div>
+            <div className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2">Visual Hierarchy</div>
+            <p className="text-xs opacity-75 leading-relaxed">
+              Tailored visual identities, strict typographic scales, and high contrast.
             </p>
           </div>
         </div>
       </section>
 
       {/* ============================================================ */}
-      {/* SECTION 5: SELECTED WORKS (PORTFOLIO GALLERY)                */}
+      {/* SECTION 5: SELECTED PROJECTS DIRECTORY                        */}
       {/* ============================================================ */}
       <section
         id="works"
         className="min-h-screen w-full flex flex-col justify-center py-28 sm:py-36 px-6 sm:px-12 md:px-16 lg:px-24 max-w-7xl mx-auto text-left border-t border-current/15"
       >
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-current/20 bg-current/5 text-xs font-mono font-semibold tracking-wider uppercase">
-            <Award className="w-3.5 h-3.5 text-amber-400" />
-            <span>04 // MY SELECTED WORKS</span>
-          </div>
-          <span className="text-xs font-mono opacity-60">CLICK ANY PROJECT TO INSPECT CASE STUDY</span>
+        <div className="text-xs font-mono tracking-wider uppercase opacity-50 mb-4">
+          04. Selected Works
         </div>
 
         <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-4 leading-tight">
           Selected Projects.
         </h2>
-        <p className="text-base sm:text-xl opacity-75 max-w-3xl mb-12 font-medium">
-          A showcase of products, web applications, and visual systems I have created. Click any entry to inspect the full design and engineering case study.
+        <p className="text-base sm:text-xl opacity-75 max-w-3xl mb-16 font-medium">
+          A showcase of products, web platforms, and visual systems I have created.
         </p>
 
-        {/* Editorial Project Directory Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((proj) => (
-            <div
-              key={proj.id}
-              onClick={() => setActiveProject(proj)}
-              className="p-7 rounded-3xl border border-current/15 bg-current/5 hover:bg-current/[0.08] transition-all duration-200 cursor-pointer flex flex-col justify-between group hover:-translate-y-1 shadow-lg"
-            >
-              <div>
-                <div className="flex items-center justify-between text-xs font-mono opacity-60 mb-3">
-                  <span className="font-bold text-current">{proj.number}</span>
-                  <span className="uppercase text-[10px] px-2.5 py-0.5 rounded-full border border-current/20 bg-current/5">
-                    {proj.domain}
-                  </span>
-                </div>
-
-                <h3 className="text-2xl font-bold group-hover:text-amber-400 transition-colors mb-2">
-                  {proj.title}
-                </h3>
-                <p className="text-xs sm:text-sm opacity-75 line-clamp-3 mb-6 font-medium leading-relaxed">
-                  {proj.subtitle}
-                </p>
-              </div>
-
-              <div>
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {proj.stack.slice(0, 3).map((s) => (
-                    <span
-                      key={s}
-                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-current/10 border border-current/10"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="pt-3 border-t border-current/10 flex items-center justify-between text-xs font-mono">
-                  <span className="opacity-60">{proj.role}</span>
-                  <span className="inline-flex items-center gap-1.5 group-hover:translate-x-1 transition-transform text-amber-400 font-semibold">
-                    Inspect <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-              </div>
+        {/* Editorial Project List - Clean typographic rows, NO CARD FRAMES */}
+        <div className="divide-y divide-current/15 border-t border-b border-current/15">
+          {/* Project 1 */}
+          <div
+            onClick={() =>
+              setActiveImage({
+                src: `${base}/screenshots/strovr/01-dashboard-full.png`,
+                title: 'Strovr',
+                subtitle: 'Email Marketing, Lead Generation & Growth CRM Platform',
+              })
+            }
+            className="py-8 sm:py-10 flex flex-col md:flex-row md:items-baseline justify-between gap-4 group cursor-zoom-in transition-opacity hover:opacity-80"
+          >
+            <div className="md:w-5/12">
+              <span className="text-xs font-mono opacity-50 mr-4">01</span>
+              <h3 className="text-2xl sm:text-3xl font-bold inline group-hover:underline">
+                Strovr
+              </h3>
+              <p className="text-xs sm:text-sm opacity-70 mt-2">
+                Email marketing templates, lead generation & CRM platform
+              </p>
             </div>
-          ))}
+            <div className="text-xs font-mono opacity-60 md:w-4/12">
+              React &bull; Vite &bull; Node.js &bull; Express &bull; Firebase &bull; SerpApi
+            </div>
+            <div className="text-xs font-mono text-right md:w-3/12 uppercase tracking-wider opacity-70">
+              View Screenshot ↗
+            </div>
+          </div>
+
+          {/* Project 2 */}
+          <div
+            onClick={() =>
+              setActiveImage({
+                src: `${base}/screenshots/strovr/01-outreach-email-studio.png`,
+                title: 'LearnReady',
+                subtitle: 'AI-Powered Adaptive Learning & Interactive Assessment Engine',
+              })
+            }
+            className="py-8 sm:py-10 flex flex-col md:flex-row md:items-baseline justify-between gap-4 group cursor-zoom-in transition-opacity hover:opacity-80"
+          >
+            <div className="md:w-5/12">
+              <span className="text-xs font-mono opacity-50 mr-4">02</span>
+              <h3 className="text-2xl sm:text-3xl font-bold inline group-hover:underline">
+                LearnReady
+              </h3>
+              <p className="text-xs sm:text-sm opacity-70 mt-2">
+                Online educational platform with structured courses & real-time AI assessments
+              </p>
+            </div>
+            <div className="text-xs font-mono opacity-60 md:w-4/12">
+              React &bull; Vite &bull; Tailwind CSS &bull; Node.js &bull; Firebase
+            </div>
+            <div className="text-xs font-mono text-right md:w-3/12 uppercase tracking-wider opacity-70">
+              View Preview ↗
+            </div>
+          </div>
+
+          {/* Project 3 */}
+          <div
+            onClick={() =>
+              setActiveImage({
+                src: `${base}/screenshots/strovr/06-crm-kanban-board.png`,
+                title: 'Custom Web & Mobile Solutions',
+                subtitle: 'Bespoke High-Impact Graphic Websites & Native-Grade Applications',
+              })
+            }
+            className="py-8 sm:py-10 flex flex-col md:flex-row md:items-baseline justify-between gap-4 group cursor-zoom-in transition-opacity hover:opacity-80"
+          >
+            <div className="md:w-5/12">
+              <span className="text-xs font-mono opacity-50 mr-4">03</span>
+              <h3 className="text-2xl sm:text-3xl font-bold inline group-hover:underline">
+                Custom Web & Apps
+              </h3>
+              <p className="text-xs sm:text-sm opacity-70 mt-2">
+                Bespoke digital products with fluid UI/UX layouts and native-style applications
+              </p>
+            </div>
+            <div className="text-xs font-mono opacity-60 md:w-4/12">
+              React &bull; Tailwind CSS &bull; Three.js &bull; Node.js &bull; MongoDB
+            </div>
+            <div className="text-xs font-mono text-right md:w-3/12 uppercase tracking-wider opacity-70">
+              View Preview ↗
+            </div>
+          </div>
+
+          {/* Project 4 */}
+          <div
+            onClick={() =>
+              setActiveImage({
+                src: `${base}/screenshots/strovr/01-analytics-overview.png`,
+                title: 'Kroma Spatial',
+                subtitle: 'Dynamic Chromatic Exhibition & Environmental System',
+              })
+            }
+            className="py-8 sm:py-10 flex flex-col md:flex-row md:items-baseline justify-between gap-4 group cursor-zoom-in transition-opacity hover:opacity-80"
+          >
+            <div className="md:w-5/12">
+              <span className="text-xs font-mono opacity-50 mr-4">04</span>
+              <h3 className="text-2xl sm:text-3xl font-bold inline group-hover:underline">
+                Kroma Spatial
+              </h3>
+              <p className="text-xs sm:text-sm opacity-70 mt-2">
+                Spatial identity, optical signage & typographic architectural wayfinding
+              </p>
+            </div>
+            <div className="text-xs font-mono opacity-60 md:w-4/12">
+              Figma Systems &bull; Adobe Illustrator &bull; Architectural Graphics
+            </div>
+            <div className="text-xs font-mono text-right md:w-3/12 uppercase tracking-wider opacity-70">
+              View Preview ↗
+            </div>
+          </div>
         </div>
       </section>
 
@@ -438,9 +445,8 @@ export function HtmlOverlay() {
         id="contact"
         className="min-h-screen w-full flex flex-col justify-center py-28 sm:py-36 px-6 sm:px-12 md:px-16 lg:px-24 max-w-7xl mx-auto text-left border-t border-current/15"
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-current/20 bg-current/5 text-xs font-mono font-semibold tracking-wider uppercase mb-6 w-fit">
-          <Mail className="w-3.5 h-3.5 text-amber-400" />
-          <span>05 // GET IN TOUCH</span>
+        <div className="text-xs font-mono tracking-wider uppercase opacity-50 mb-4">
+          05. Get In Touch
         </div>
 
         <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-6 leading-tight">
@@ -448,28 +454,27 @@ export function HtmlOverlay() {
         </h2>
 
         <p className="text-lg sm:text-2xl font-light opacity-85 leading-relaxed max-w-3xl mb-12">
-          Whether you have a new venture in mind, need a bespoke web platform designed and built, or are looking to bring a multidisciplinary designer-developer onto your team — my inbox is always open.
+          Whether you have a new venture in mind, need a bespoke web platform designed and built, or are looking to collaborate on a new digital product — reach out below.
         </p>
 
-        {/* Interactive Contact Drawer */}
+        {/* Contact Drawer without card outlines */}
         <div className="w-full mb-16">
           <ContactDrawer />
         </div>
 
         {/* Personal Colophon Footer */}
-        <footer className="pt-8 border-t border-current/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono opacity-70">
+        <footer className="pt-8 border-t border-current/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono opacity-60">
           <div>
             &copy; {new Date().getFullYear()} ASHLEY AJOY GHOSE &bull; ॲशले घोष &bull; MAHARASHTRA, INDIA
           </div>
-          <div className="flex items-center gap-4">
+          <div>
             <a
               href="https://github.com/docuready-dev"
               target="_blank"
               rel="noreferrer"
-              className="hover:underline flex items-center gap-1 text-current"
+              className="hover:underline"
             >
-              <span>github.com/docuready-dev</span>
-              <ArrowUpRight className="w-3 h-3" />
+              github.com/docuready-dev ↗
             </a>
           </div>
         </footer>
