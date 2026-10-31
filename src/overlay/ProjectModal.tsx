@@ -40,10 +40,10 @@ export function ProjectModal() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
             transition={{ type: 'spring', damping: 28, stiffness: 320 }}
-            className={`relative w-full max-w-3xl max-h-[88vh] overflow-y-auto glass-panel rounded-3xl p-7 sm:p-10 shadow-2xl border z-10 custom-scrollbar ${
+            className={`relative w-full max-w-3xl max-h-[88vh] overflow-y-auto rounded-3xl p-7 sm:p-10 shadow-2xl border z-10 custom-scrollbar ${
               isDark
                 ? 'bg-[#121218]/95 border-white/15 text-[#F4F3EF]'
-                : 'bg-white/95 border-white/80 text-[#111115]'
+                : 'bg-white/95 border-black/10 text-[#111115]'
             }`}
           >
             {/* Close Button */}

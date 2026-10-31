@@ -34,10 +34,10 @@ export function ContactDrawer() {
 
   return (
     <div
-      className={`w-full max-w-4xl mx-auto glass-panel rounded-3xl p-8 sm:p-12 border shadow-2xl transition-all duration-300 ${
+      className={`w-full rounded-3xl p-8 sm:p-12 border transition-all duration-300 ${
         isDark
-          ? 'bg-[#121218]/85 border-white/15 text-[#F4F3EF]'
-          : 'bg-white/85 border-white/80 text-[#111115]'
+          ? 'bg-[#121218]/90 border-white/15 text-[#F4F3EF]'
+          : 'bg-white/90 border-black/10 text-[#111115]'
       }`}
     >
       <div className="flex flex-col md:flex-row gap-10">
