@@ -454,11 +454,27 @@ export function HtmlOverlay() {
         </div>
 
         {/* Personal Colophon Footer */}
-        <footer className="pt-8 border-t border-current/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono opacity-60">
+        <footer className="pt-8 border-t border-current/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono opacity-70">
           <div>
             &copy; {new Date().getFullYear()} ASHLEY AJOY GHOSE &bull; ॲशले घोष &bull; MUMBAI, INDIA
           </div>
-          <div>
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="mailto:ashleyghose64@gmail.com"
+              className="hover:underline"
+            >
+              ashleyghose64@gmail.com
+            </a>
+            <span>&bull;</span>
+            <a
+              href="https://wa.me/919004804043"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              WhatsApp (+91 90048 04043) ↗
+            </a>
+            <span>&bull;</span>
             <a
               href="https://github.com/docuready-dev"
               target="_blank"

@@ -49,10 +49,23 @@ export function ContactDrawer() {
                   Personal Email
                 </div>
                 <a
-                  href="mailto:ashley@docuready.dev"
+                  href="mailto:ashleyghose64@gmail.com"
                   className="text-lg font-bold hover:underline text-[#111115]"
                 >
-                  ashley@docuready.dev
+                  ashleyghose64@gmail.com
+                </a>
+              </div>
+              <div>
+                <div className="text-[11px] font-mono uppercase tracking-wider opacity-50 mb-1">
+                  WhatsApp & Direct Line
+                </div>
+                <a
+                  href="https://wa.me/919004804043"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg font-bold hover:underline text-[#111115]"
+                >
+                  +91 90048 04043
                 </a>
               </div>
               <div>
@@ -66,8 +79,22 @@ export function ContactDrawer() {
             </div>
           </div>
 
-          {/* Social Channels */}
-          <div className="pt-6 border-t border-black/10 flex flex-wrap gap-4 text-xs font-mono">
+          {/* Direct Channels */}
+          <div className="pt-6 border-t border-black/10 flex flex-wrap gap-5 text-xs font-mono">
+            <a
+              href="mailto:ashleyghose64@gmail.com"
+              className="hover:underline font-semibold text-[#111115] opacity-80 hover:opacity-100"
+            >
+              Email ↗
+            </a>
+            <a
+              href="https://wa.me/919004804043"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline font-semibold text-[#111115] opacity-80 hover:opacity-100"
+            >
+              WhatsApp ↗
+            </a>
             <a
               href="https://github.com/docuready-dev"
               target="_blank"
