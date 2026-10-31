@@ -60,82 +60,89 @@ export function HtmlOverlay() {
   return (
     <div className="w-full text-left font-sans text-[#111115]">
       {/* ============================================================ */}
-      {/* SECTION 1: HERO / INTRO (RIGHT-ALIGNED + OVERLAPPING PHOTO)  */}
+      {/* SECTION 1: HERO / INTRO (BACKGROUND IMAGE + FOREGROUND TEXT)  */}
       {/* ============================================================ */}
       <section
         id="hero"
-        className="min-h-screen w-full relative flex flex-col justify-center pt-28 sm:pt-36 md:pt-40 pb-20 px-6 sm:px-12 md:px-16 lg:px-24 max-w-7xl mx-auto overflow-hidden text-right"
+        className="min-h-screen w-full relative flex flex-col justify-center pt-28 sm:pt-36 md:pt-40 pb-20 px-6 sm:px-12 md:px-16 lg:px-24 overflow-hidden text-right"
       >
-        {/* Overlapping Hero Portrait: Left-anchored with selective artistic blur on right graphics */}
-        <div className="relative lg:absolute lg:left-6 lg:bottom-12 xl:bottom-16 w-full sm:w-[380px] md:w-[440px] lg:w-[420px] xl:w-[480px] mb-10 lg:mb-0 z-0 select-none pointer-events-none mr-auto lg:mr-0 text-left">
-          <div className="relative overflow-hidden rounded-3xl shadow-2xl shadow-black/10 bg-[#0d0d0d]">
-            <img
-              src={ashleyPortrait}
-              alt="Ashley Ajoy Ghose"
-              className="w-full h-auto object-cover object-left block"
-            />
-            {/* Selective blur & fade mask over the right graphic area (dr DocuReady text) */}
-            <div className="absolute inset-y-0 right-0 w-3/5 backdrop-blur-md bg-gradient-to-r from-transparent via-[#F4F3EF]/35 to-[#F4F3EF]/90 pointer-events-none" />
-            {/* Top edge soft blur & fade covering top banner text */}
-            <div className="absolute inset-x-0 top-0 h-10 backdrop-blur-sm bg-gradient-to-b from-[#0d0d0d] via-[#0d0d0d]/80 to-transparent pointer-events-none" />
-            {/* Soft gradient bottom dissolve into the page background */}
-            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#F4F3EF] via-[#F4F3EF]/50 to-transparent pointer-events-none" />
-          </div>
+        {/* Full Hero Background Image & Readability Scrims */}
+        <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+          {/* Hero Background Photo */}
+          <img
+            src={ashleyPortrait}
+            alt="Ashley Ajoy Ghose"
+            className="w-full h-full object-cover object-top sm:object-[15%_center] lg:object-[20%_center]"
+          />
+
+          {/* Base Readability Scrim: Soft ambient wash ensuring mobile legibility while preserving punch on desktop */}
+          <div className="absolute inset-0 bg-[#F4F3EF]/65 sm:bg-transparent sm:bg-gradient-to-r sm:from-transparent sm:via-[#F4F3EF]/85 sm:to-[#F4F3EF]/98" />
+
+          {/* Selective backdrop blur on the right side to dissolve background illustrations & text */}
+          <div className="absolute inset-y-0 right-0 w-full sm:w-3/4 lg:w-3/5 backdrop-blur-sm sm:backdrop-blur-md bg-gradient-to-r from-transparent via-[#F4F3EF]/50 to-[#F4F3EF]/95" />
+
+          {/* Top subtle blend for floating navbar */}
+          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#F4F3EF]/85 via-[#F4F3EF]/40 to-transparent" />
+
+          {/* Bottom smooth dissolve into Section 2 (#approach) */}
+          <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#F4F3EF] via-[#F4F3EF]/90 to-transparent" />
         </div>
 
-        {/* Hero Content: Exclusively Right-Aligned */}
-        <div className="relative z-10 flex flex-col items-end text-right w-full lg:max-w-2xl xl:max-w-3xl ml-auto">
-          {/* Simple Identity Line */}
-          <div className="mb-6 text-xs sm:text-sm font-mono tracking-wider uppercase opacity-60 flex flex-wrap items-center justify-end gap-x-2">
-            <span>Ashley Ajoy Ghose</span>
-            <span>&bull;</span>
-            <span className="font-devanagari font-bold text-sm">ॲशले घोष</span>
-            <span>&bull;</span>
-            <span>Mumbai, India</span>
-          </div>
-
-          {/* Display Headline */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight leading-[0.98] mb-8 text-right max-w-4xl">
-            Code, craft, and digital architecture.
-          </h1>
-
-          {/* Bio Introduction */}
-          <p className="text-base sm:text-xl md:text-2xl font-normal leading-relaxed opacity-90 mb-10 max-w-2xl text-right">
-            I am <strong className="font-semibold text-current">Ashley Ajoy Ghose</strong>, a
-            multidisciplinary developer and designer based out of Mumbai. I build
-            high-impact graphic web designs and robust mobile applications that bridge raw
-            technical engineering with striking visual identity.
-          </p>
-
-          {/* Action Links */}
-          <div className="flex flex-wrap items-center justify-end gap-4 mb-16">
-            <button
-              onClick={() => handleJump('works')}
-              className="px-8 py-3.5 rounded text-xs font-mono font-bold tracking-wider uppercase bg-[#111115] text-[#F4F3EF] hover:opacity-90 transition-opacity cursor-pointer"
-            >
-              Explore My Works
-            </button>
-            <button
-              onClick={() => handleJump('contact')}
-              className="px-8 py-3.5 rounded text-xs font-mono font-bold tracking-wider uppercase bg-black/5 text-[#111115] border border-black/10 hover:bg-black/10 transition-colors cursor-pointer"
-            >
-              Get in Touch
-            </button>
-          </div>
-
-          {/* Editorial Information Columns: Right-Aligned */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-current/15 font-mono text-xs w-full max-w-2xl text-right">
-            <div>
-              <div className="text-[10px] uppercase tracking-wider opacity-50 mb-1">Specialization</div>
-              <div className="font-semibold text-sm">Graphic Web &bull; Mobile Apps</div>
+        {/* Foreground Content: Exclusively Right-Aligned & High Contrast */}
+        <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col items-end text-right">
+          <div className="flex flex-col items-end text-right w-full lg:max-w-2xl xl:max-w-3xl ml-auto">
+            {/* Simple Identity Line */}
+            <div className="mb-6 text-xs sm:text-sm font-mono tracking-wider uppercase opacity-70 flex flex-wrap items-center justify-end gap-x-2">
+              <span className="font-semibold">Ashley Ajoy Ghose</span>
+              <span>&bull;</span>
+              <span className="font-devanagari font-bold text-sm">ॲशले घोष</span>
+              <span>&bull;</span>
+              <span>Mumbai, India</span>
             </div>
-            <div>
-              <div className="text-[10px] uppercase tracking-wider opacity-50 mb-1">Core Stack</div>
-              <div className="font-semibold text-sm">React &bull; Node.js &bull; TypeScript</div>
+
+            {/* Display Headline */}
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight leading-[0.98] mb-8 text-right max-w-4xl text-[#111115]">
+              Code, craft, and digital architecture.
+            </h1>
+
+            {/* Bio Introduction */}
+            <p className="text-base sm:text-xl md:text-2xl font-normal leading-relaxed opacity-95 mb-10 max-w-2xl text-right text-[#111115]">
+              I am <strong className="font-semibold text-current">Ashley Ajoy Ghose</strong>, a
+              multidisciplinary developer and designer based out of Mumbai. I build
+              high-impact graphic web designs and robust mobile applications that bridge raw
+              technical engineering with striking visual identity.
+            </p>
+
+            {/* Action Links */}
+            <div className="flex flex-wrap items-center justify-end gap-4 mb-16">
+              <button
+                onClick={() => handleJump('works')}
+                className="px-8 py-3.5 rounded text-xs font-mono font-bold tracking-wider uppercase bg-[#111115] text-[#F4F3EF] hover:opacity-90 transition-opacity cursor-pointer shadow-md shadow-black/10"
+              >
+                Explore My Works
+              </button>
+              <button
+                onClick={() => handleJump('contact')}
+                className="px-8 py-3.5 rounded text-xs font-mono font-bold tracking-wider uppercase bg-black/5 text-[#111115] border border-black/15 hover:bg-black/10 transition-colors cursor-pointer backdrop-blur-sm"
+              >
+                Get in Touch
+              </button>
             </div>
-            <div>
-              <div className="text-[10px] uppercase tracking-wider opacity-50 mb-1">Availability</div>
-              <div className="font-semibold text-sm">Open for Projects &bull; 2026</div>
+
+            {/* Editorial Information Columns: Right-Aligned */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-black/15 font-mono text-xs w-full max-w-2xl text-right">
+              <div>
+                <div className="text-[10px] uppercase tracking-wider opacity-60 mb-1">Specialization</div>
+                <div className="font-semibold text-sm">Graphic Web &bull; Mobile Apps</div>
+              </div>
+              <div>
+                <div className="text-[10px] uppercase tracking-wider opacity-60 mb-1">Core Stack</div>
+                <div className="font-semibold text-sm">React &bull; Node.js &bull; TypeScript</div>
+              </div>
+              <div>
+                <div className="text-[10px] uppercase tracking-wider opacity-60 mb-1">Availability</div>
+                <div className="font-semibold text-sm">Open for Projects &bull; 2026</div>
+              </div>
             </div>
           </div>
         </div>
