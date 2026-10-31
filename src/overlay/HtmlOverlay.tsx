@@ -1,5 +1,6 @@
 import { ContactDrawer } from './ContactDrawer'
 import { usePortfolioStore } from '../store'
+import ashleyPortrait from '../assets/ashley/ashley-portrait.jpg'
 
 export function HtmlOverlay() {
   const setActiveImage = usePortfolioStore((s) => s.setActiveImage)
@@ -9,37 +10,37 @@ export function HtmlOverlay() {
   const strovrScreenshots = [
     {
       id: 'dashboard',
-      title: 'Strovr — Command Dashboard',
+      title: 'Strovr : Command Dashboard',
       subtitle: 'Real-time pipeline metrics, lead generation & outreach telemetry',
       src: `${base}/screenshots/strovr/01-dashboard-full.png`,
     },
     {
       id: 'email-studio',
-      title: 'Strovr — Email Studio & Template Builder',
+      title: 'Strovr : Email Studio & Template Builder',
       subtitle: 'Dynamic responsive email creation and automated campaign dispatch',
       src: `${base}/screenshots/strovr/01-outreach-email-studio.png`,
     },
     {
       id: 'crm-kanban',
-      title: 'Strovr — CRM Pipeline & Kanban Board',
+      title: 'Strovr : CRM Pipeline & Kanban Board',
       subtitle: 'Interactive lead staging, contact interaction sheets & deal tracking',
       src: `${base}/screenshots/strovr/06-crm-kanban-board.png`,
     },
     {
       id: 'analytics',
-      title: 'Strovr — Analytics & Performance Insights',
+      title: 'Strovr : Analytics & Performance Insights',
       subtitle: 'Deliverability analytics, click tracking & conversion metrics',
       src: `${base}/screenshots/strovr/01-analytics-overview.png`,
     },
     {
       id: 'automations',
-      title: 'Strovr — Automated Sequences & Workflows',
+      title: 'Strovr : Automated Sequences & Workflows',
       subtitle: 'Event-driven multi-step outreach pipelines with SerpApi hooks',
       src: `${base}/screenshots/strovr/01-automations-workflows.png`,
     },
     {
       id: 'integrations',
-      title: 'Strovr — Integrations Hub',
+      title: 'Strovr : Integrations Hub',
       subtitle: 'Cloud webhooks, third-party CRM connectors & data pipes',
       src: `${base}/screenshots/strovr/01-integrations-hub-full.png`,
     },
@@ -59,63 +60,83 @@ export function HtmlOverlay() {
   return (
     <div className="w-full text-left font-sans text-[#111115]">
       {/* ============================================================ */}
-      {/* SECTION 1: HERO / INTRO                                       */}
+      {/* SECTION 1: HERO / INTRO (RIGHT-ALIGNED + OVERLAPPING PHOTO)  */}
       {/* ============================================================ */}
       <section
         id="hero"
-        className="min-h-screen w-full flex flex-col justify-start pt-28 sm:pt-36 md:pt-40 pb-20 px-6 sm:px-12 md:px-16 lg:px-24 max-w-7xl mx-auto text-left"
+        className="min-h-screen w-full relative flex flex-col justify-center pt-28 sm:pt-36 md:pt-40 pb-20 px-6 sm:px-12 md:px-16 lg:px-24 max-w-7xl mx-auto overflow-hidden text-right"
       >
-        {/* Simple Identity Line - No icons, no frames */}
-        <div className="mb-8 text-xs sm:text-sm font-mono tracking-wider uppercase opacity-60">
-          <span>Ashley Ajoy Ghose</span>
-          <span className="mx-2">&bull;</span>
-          <span className="font-devanagari font-bold text-sm">ॲशले घोष</span>
-          <span className="mx-2">&bull;</span>
-          <span>Mumbai, India</span>
+        {/* Overlapping Hero Portrait: Left-anchored with selective artistic blur on right graphics */}
+        <div className="relative lg:absolute lg:left-6 lg:bottom-12 xl:bottom-16 w-full sm:w-[380px] md:w-[440px] lg:w-[420px] xl:w-[480px] mb-10 lg:mb-0 z-0 select-none pointer-events-none mr-auto lg:mr-0 text-left">
+          <div className="relative overflow-hidden rounded-3xl shadow-2xl shadow-black/10 bg-[#0d0d0d]">
+            <img
+              src={ashleyPortrait}
+              alt="Ashley Ajoy Ghose"
+              className="w-full h-auto object-cover object-left block"
+            />
+            {/* Selective blur & fade mask over the right graphic area (dr DocuReady text) */}
+            <div className="absolute inset-y-0 right-0 w-3/5 backdrop-blur-md bg-gradient-to-r from-transparent via-[#F4F3EF]/35 to-[#F4F3EF]/90 pointer-events-none" />
+            {/* Top edge soft blur & fade covering top banner text */}
+            <div className="absolute inset-x-0 top-0 h-10 backdrop-blur-sm bg-gradient-to-b from-[#0d0d0d] via-[#0d0d0d]/80 to-transparent pointer-events-none" />
+            {/* Soft gradient bottom dissolve into the page background */}
+            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#F4F3EF] via-[#F4F3EF]/50 to-transparent pointer-events-none" />
+          </div>
         </div>
 
-        {/* Display Headline - Solid editorial typography with Delight, zero gradient text */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight leading-[0.98] mb-8 max-w-5xl">
-          Code, craft, and digital architecture.
-        </h1>
-
-        {/* Bio Introduction */}
-        <p className="text-base sm:text-xl md:text-2xl font-normal leading-relaxed opacity-90 mb-10 max-w-3xl">
-          I am <strong className="font-semibold text-current">Ashley Ajoy Ghose</strong>, a
-          multidisciplinary developer and designer based out of Mumbai. I build
-          high-impact graphic web designs and robust mobile applications that bridge raw
-          technical engineering with striking visual identity.
-        </p>
-
-        {/* Action Links - Clean editorial buttons, no icons */}
-        <div className="flex flex-wrap items-center gap-4 mb-16">
-          <button
-            onClick={() => handleJump('works')}
-            className="px-8 py-3.5 rounded text-xs font-mono font-bold tracking-wider uppercase bg-[#111115] text-[#F4F3EF] hover:opacity-90 transition-opacity cursor-pointer"
-          >
-            Explore My Works
-          </button>
-          <button
-            onClick={() => handleJump('contact')}
-            className="px-8 py-3.5 rounded text-xs font-mono font-bold tracking-wider uppercase bg-black/5 text-[#111115] border border-black/10 hover:bg-black/10 transition-colors cursor-pointer"
-          >
-            Get in Touch
-          </button>
-        </div>
-
-        {/* Editorial Information Columns - No card frames */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-current/15 font-mono text-xs max-w-4xl">
-          <div>
-            <div className="text-[10px] uppercase tracking-wider opacity-50 mb-1">Specialization</div>
-            <div className="font-semibold text-sm">Graphic Web &bull; Mobile Apps</div>
+        {/* Hero Content: Exclusively Right-Aligned */}
+        <div className="relative z-10 flex flex-col items-end text-right w-full lg:max-w-2xl xl:max-w-3xl ml-auto">
+          {/* Simple Identity Line */}
+          <div className="mb-6 text-xs sm:text-sm font-mono tracking-wider uppercase opacity-60 flex flex-wrap items-center justify-end gap-x-2">
+            <span>Ashley Ajoy Ghose</span>
+            <span>&bull;</span>
+            <span className="font-devanagari font-bold text-sm">ॲशले घोष</span>
+            <span>&bull;</span>
+            <span>Mumbai, India</span>
           </div>
-          <div>
-            <div className="text-[10px] uppercase tracking-wider opacity-50 mb-1">Core Stack</div>
-            <div className="font-semibold text-sm">React &bull; Node.js &bull; TypeScript</div>
+
+          {/* Display Headline */}
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight leading-[0.98] mb-8 text-right max-w-4xl">
+            Code, craft, and digital architecture.
+          </h1>
+
+          {/* Bio Introduction */}
+          <p className="text-base sm:text-xl md:text-2xl font-normal leading-relaxed opacity-90 mb-10 max-w-2xl text-right">
+            I am <strong className="font-semibold text-current">Ashley Ajoy Ghose</strong>, a
+            multidisciplinary developer and designer based out of Mumbai. I build
+            high-impact graphic web designs and robust mobile applications that bridge raw
+            technical engineering with striking visual identity.
+          </p>
+
+          {/* Action Links */}
+          <div className="flex flex-wrap items-center justify-end gap-4 mb-16">
+            <button
+              onClick={() => handleJump('works')}
+              className="px-8 py-3.5 rounded text-xs font-mono font-bold tracking-wider uppercase bg-[#111115] text-[#F4F3EF] hover:opacity-90 transition-opacity cursor-pointer"
+            >
+              Explore My Works
+            </button>
+            <button
+              onClick={() => handleJump('contact')}
+              className="px-8 py-3.5 rounded text-xs font-mono font-bold tracking-wider uppercase bg-black/5 text-[#111115] border border-black/10 hover:bg-black/10 transition-colors cursor-pointer"
+            >
+              Get in Touch
+            </button>
           </div>
-          <div>
-            <div className="text-[10px] uppercase tracking-wider opacity-50 mb-1">Availability</div>
-            <div className="font-semibold text-sm">Open for Projects &bull; 2026</div>
+
+          {/* Editorial Information Columns: Right-Aligned */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-current/15 font-mono text-xs w-full max-w-2xl text-right">
+            <div>
+              <div className="text-[10px] uppercase tracking-wider opacity-50 mb-1">Specialization</div>
+              <div className="font-semibold text-sm">Graphic Web &bull; Mobile Apps</div>
+            </div>
+            <div>
+              <div className="text-[10px] uppercase tracking-wider opacity-50 mb-1">Core Stack</div>
+              <div className="font-semibold text-sm">React &bull; Node.js &bull; TypeScript</div>
+            </div>
+            <div>
+              <div className="text-[10px] uppercase tracking-wider opacity-50 mb-1">Availability</div>
+              <div className="font-semibold text-sm">Open for Projects &bull; 2026</div>
+            </div>
           </div>
         </div>
       </section>
@@ -343,19 +364,10 @@ export function HtmlOverlay() {
           </div>
 
           {/* Project 2 */}
-          <div
-            onClick={() =>
-              setActiveImage({
-                src: `${base}/screenshots/strovr/01-outreach-email-studio.png`,
-                title: 'LearnReady',
-                subtitle: 'AI-Powered Adaptive Learning & Interactive Assessment Engine',
-              })
-            }
-            className="py-8 sm:py-10 flex flex-col md:flex-row md:items-baseline justify-between gap-4 group cursor-zoom-in transition-opacity hover:opacity-80"
-          >
+          <div className="py-8 sm:py-10 flex flex-col md:flex-row md:items-baseline justify-between gap-4 group transition-opacity hover:opacity-90">
             <div className="md:w-5/12">
               <span className="text-xs font-mono opacity-50 mr-4">02</span>
-              <h3 className="text-2xl sm:text-3xl font-bold inline group-hover:underline">
+              <h3 className="text-2xl sm:text-3xl font-bold inline">
                 LearnReady
               </h3>
               <p className="text-xs sm:text-sm opacity-70 mt-2">
@@ -365,25 +377,16 @@ export function HtmlOverlay() {
             <div className="text-xs font-mono opacity-60 md:w-4/12">
               React &bull; Vite &bull; Tailwind CSS &bull; Node.js &bull; Firebase
             </div>
-            <div className="text-xs font-mono text-right md:w-3/12 uppercase tracking-wider opacity-70">
-              View Preview ↗
+            <div className="text-xs font-mono text-right md:w-3/12 uppercase tracking-wider opacity-50">
+              In Development
             </div>
           </div>
 
           {/* Project 3 */}
-          <div
-            onClick={() =>
-              setActiveImage({
-                src: `${base}/screenshots/strovr/06-crm-kanban-board.png`,
-                title: 'Custom Web & Mobile Solutions',
-                subtitle: 'Bespoke High-Impact Graphic Websites & Native-Grade Applications',
-              })
-            }
-            className="py-8 sm:py-10 flex flex-col md:flex-row md:items-baseline justify-between gap-4 group cursor-zoom-in transition-opacity hover:opacity-80"
-          >
+          <div className="py-8 sm:py-10 flex flex-col md:flex-row md:items-baseline justify-between gap-4 group transition-opacity hover:opacity-90">
             <div className="md:w-5/12">
               <span className="text-xs font-mono opacity-50 mr-4">03</span>
-              <h3 className="text-2xl sm:text-3xl font-bold inline group-hover:underline">
+              <h3 className="text-2xl sm:text-3xl font-bold inline">
                 Custom Web & Apps
               </h3>
               <p className="text-xs sm:text-sm opacity-70 mt-2">
@@ -393,25 +396,16 @@ export function HtmlOverlay() {
             <div className="text-xs font-mono opacity-60 md:w-4/12">
               React &bull; Tailwind CSS &bull; Three.js &bull; Node.js &bull; MongoDB
             </div>
-            <div className="text-xs font-mono text-right md:w-3/12 uppercase tracking-wider opacity-70">
-              View Preview ↗
+            <div className="text-xs font-mono text-right md:w-3/12 uppercase tracking-wider opacity-50">
+              Client Engineering
             </div>
           </div>
 
           {/* Project 4 */}
-          <div
-            onClick={() =>
-              setActiveImage({
-                src: `${base}/screenshots/strovr/01-analytics-overview.png`,
-                title: 'Kroma Spatial',
-                subtitle: 'Dynamic Chromatic Exhibition & Environmental System',
-              })
-            }
-            className="py-8 sm:py-10 flex flex-col md:flex-row md:items-baseline justify-between gap-4 group cursor-zoom-in transition-opacity hover:opacity-80"
-          >
+          <div className="py-8 sm:py-10 flex flex-col md:flex-row md:items-baseline justify-between gap-4 group transition-opacity hover:opacity-90">
             <div className="md:w-5/12">
               <span className="text-xs font-mono opacity-50 mr-4">04</span>
-              <h3 className="text-2xl sm:text-3xl font-bold inline group-hover:underline">
+              <h3 className="text-2xl sm:text-3xl font-bold inline">
                 Kroma Spatial
               </h3>
               <p className="text-xs sm:text-sm opacity-70 mt-2">
@@ -421,8 +415,8 @@ export function HtmlOverlay() {
             <div className="text-xs font-mono opacity-60 md:w-4/12">
               Figma Systems &bull; Adobe Illustrator &bull; Architectural Graphics
             </div>
-            <div className="text-xs font-mono text-right md:w-3/12 uppercase tracking-wider opacity-70">
-              View Preview ↗
+            <div className="text-xs font-mono text-right md:w-3/12 uppercase tracking-wider opacity-50">
+              Design System
             </div>
           </div>
         </div>
@@ -444,7 +438,7 @@ export function HtmlOverlay() {
         </h2>
 
         <p className="text-lg sm:text-2xl font-light opacity-85 leading-relaxed max-w-3xl mb-12">
-          Whether you have a new venture in mind, need a bespoke web platform designed and built, or are looking to collaborate on a new digital product — reach out below.
+          Whether you have a new venture in mind, need a bespoke web platform designed and built, or are looking to collaborate on a new digital product, reach out below.
         </p>
 
         {/* Contact Drawer without card outlines */}
