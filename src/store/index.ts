@@ -1,0 +1,192 @@
+import { create } from 'zustand'
+import type { ProjectItem, CreativeDomain } from '../types'
+
+export const FLAGSHIP_PROJECTS: ProjectItem[] = [
+  {
+    id: 'strovr',
+    number: '01',
+    title: 'Strovr',
+    subtitle: 'Email Marketing, Lead Generation & Growth CRM Platform',
+    domain: 'web',
+    category: 'Growth SaaS & Lead Engine',
+    year: 2026,
+    client: 'Strovr (strovr.space)',
+    role: 'Full-Stack Developer & Product Architect',
+    tagline: 'Automated Lead Extraction & Bespoke Marketing Sequences',
+    description:
+      'An all-in-one growth platform featuring dynamic email marketing templates, automated lead extraction via SerpApi, and an intuitive customer relationship management workflow.',
+    stack: ['React', 'Vite', 'Node.js', 'Express', 'Firebase', 'SerpApi'],
+    architecture: [
+      'SerpApi query pipeline aggregating high-intent business leads in real-time',
+      'Express & Node.js microservice handling template compilation and dispatch',
+      'Firebase Firestore real-time pipeline managing contact lists & CRM stages',
+      'Vite-optimized frontend with sub-100ms routing and instant template previews',
+    ],
+    metrics: ['Live on strovr.space', '10x Lead Discovery Speed', 'Real-Time CRM Pipeline'],
+    accentColor: '#3b82f6',
+  },
+  {
+    id: 'learnready',
+    number: '02',
+    title: 'LearnReady',
+    subtitle: 'AI-Powered Adaptive Learning & Interactive Assessment Engine',
+    domain: 'web',
+    category: 'EdTech & AI Evaluation Platform',
+    year: 2026,
+    client: 'LearnReady Education',
+    role: 'Lead Full-Stack Engineer & UI Architect',
+    tagline: 'Structured Curriculum Delivery with Real-Time AI Assessments',
+    description:
+      'A comprehensive online educational web application delivering structured interactive courses and AI-generated assessments tailored to individual student mastery.',
+    stack: ['React', 'Vite', 'Tailwind CSS', 'Node.js', 'Firebase', 'AI Assessments'],
+    architecture: [
+      'Modular course player with chapter progress and persistent bookmarking',
+      'Algorithmic assessment engine generating dynamic quizzes based on competency',
+      'Firebase authentication and real-time student performance analytics',
+      'Responsive dashboard engineered with Tailwind CSS and fluid micro-interactions',
+    ],
+    metrics: ['Structured Course Pathways', 'Real-Time Mastery Scoring', 'Zero-Latency UI'],
+    accentColor: '#10b981',
+  },
+  {
+    id: 'custom-web-apps',
+    number: '03',
+    title: 'Custom Web & Apps',
+    subtitle: 'Bespoke High-Impact Graphic Websites & Native-Grade Applications',
+    domain: 'app',
+    category: 'Custom Web & Mobile Engineering',
+    year: 2026,
+    client: 'Client Commissions & Independent Ventures',
+    role: 'Principal Designer & Software Engineer',
+    tagline: 'Bespoke Digital Products Bridging Raw Code & Striking Identity',
+    description:
+      'A curated collection of bespoke web and mobile applications engineered for high-growth ventures, featuring fluid UI/UX layouts, motion physics, and production-grade architectures.',
+    stack: ['React', 'Tailwind CSS', 'Three.js', 'Node.js', 'Express', 'MongoDB Atlas'],
+    architecture: [
+      'Custom design systems tailored from Figma to pixel-perfect component trees',
+      'Spatial 3D graphics and GLSL shader enhancements for elevated brand identity',
+      'Scalable RESTful API backends with MongoDB Atlas clustering and JWT auth',
+      'Mobile-first responsive engineering delivering 60 FPS touch performance',
+    ],
+    metrics: ['Production Deployed', 'Fluid Touch Gestures', '100% Custom Engineering'],
+    accentColor: '#f59e0b',
+  },
+  {
+    id: 'kroma-spatial',
+    number: '04',
+    title: 'Kroma Spatial',
+    subtitle: 'Dynamic Chromatic Exhibition & Environmental System',
+    domain: 'graphic',
+    category: 'Exhibition & Spatial Identity',
+    year: 2025,
+    client: 'Basel Museum of Architecture',
+    role: 'Art Director & Spatial Identity Lead',
+    tagline: 'Refractive Glass Installations & Chromatic Spatial Wayfinding',
+    description:
+      'An environmental design program featuring kinetic glass totems, light-dispersing acrylic wayfinding, and a typographic hierarchy that shifts color based on ambient museum sunlight.',
+    stack: ['Physical Optics', 'Photometric Raytracing', 'Figma Systems', 'Adobe Illustrator'],
+    architecture: [
+      'Prismatic dichroic glass signage with micro-etched typography',
+      'Dynamic daylight calculation system orienting directional typography',
+      'Bilingual Swiss-style architectural wayfinding grid',
+    ],
+    metrics: ['German Design Gold Award', '180,000 Visitors Guided'],
+    accentColor: '#ec4899',
+  },
+  {
+    id: 'aether-os',
+    number: '05',
+    title: 'Aether Mobile OS',
+    subtitle: 'Spatial Computing Interface & Fluid Gesture Engine',
+    domain: 'app',
+    category: 'Spatial UI & Operating System',
+    year: 2026,
+    client: 'Aether Labs Mobile',
+    role: 'Head of Human Interface Design',
+    tagline: 'Deep Depth UI Architecture for Next-Generation Mobile Apps',
+    description:
+      'An experimental mobile operating system interface designed around depth perception, frosted glass materials, and spatial kinetic physics. Widgets dynamically separate in 3D space during multi-tasking.',
+    stack: ['React Native', 'Tailwind CSS', 'Three.js', 'Linear Algebra Engine'],
+    architecture: [
+      'GPU shader-based real-time Gaussian and frosted glass blur pipeline',
+      '60 FPS spatial depth parallax responding to device gyroscopes and optical tracking',
+      'Haptic feedback synchronized with virtual spring-damper dynamics',
+    ],
+    metrics: ['Apple Design Award Nominee', '4.9/5 Developer Beta Rating'],
+    accentColor: '#8b5cf6',
+  },
+  {
+    id: 'atelier-kinetic',
+    number: '06',
+    title: 'Atelier Kinetic',
+    subtitle: 'Generative Swiss Identity & Spatial Graphic System',
+    domain: 'graphic',
+    category: 'Brand Identity & Generative Art',
+    year: 2025,
+    client: 'Atelier Helvetica',
+    role: 'Lead Visual Designer & Creative Technologist',
+    tagline: 'Algorithmic Typography Meets High-Fashion Physical Monograph',
+    description:
+      'A bespoke identity and generative publication system engineered with custom GLSL rasterization tools and mathematical grid matrices. Bridges 1960s Swiss International Style with real-time procedural typography.',
+    stack: ['WebGL / GLSL', 'Variable Fonts', 'Adobe Illustrator', 'Figma'],
+    architecture: [
+      'Parametric glyph matrix generator producing 10,000 unique poster variations',
+      'Mathematical Bézier grid subdivision rendering print-ready vector SVGs',
+      'Physical spot-varnish and embossed duplex paper stocks',
+    ],
+    metrics: ['TDC New York Typographic Excellence', '12,000 Limited Editions Sold'],
+    accentColor: '#111115',
+  },
+]
+
+export interface PortfolioState {
+  projects: ProjectItem[]
+  activeProject: ProjectItem | null
+  scrollProgress: number
+  scrollVelocity: number
+  activeDomain: CreativeDomain | 'all'
+  dpr: number
+  transmissionSamples: number
+  isLowQuality: boolean
+  isShiftedLayout: boolean
+  blurIntensity: 'frosted' | 'deep'
+  theme: 'dark' | 'light'
+  setActiveProject: (project: ProjectItem | null) => void
+  setScrollProgress: (progress: number, velocity?: number) => void
+  setActiveDomain: (domain: CreativeDomain | 'all') => void
+  setDpr: (dpr: number) => void
+  setTransmissionSamples: (samples: number) => void
+  setIsLowQuality: (low: boolean) => void
+  setIsShiftedLayout: (shifted: boolean) => void
+  setBlurIntensity: (intensity: 'frosted' | 'deep') => void
+  setTheme: (theme: 'dark' | 'light') => void
+}
+
+export const usePortfolioStore = create<PortfolioState>((set) => ({
+  projects: FLAGSHIP_PROJECTS,
+  activeProject: null,
+  scrollProgress: 0,
+  scrollVelocity: 0,
+  activeDomain: 'all',
+  dpr: 1.5,
+  transmissionSamples: 6,
+  isLowQuality: false,
+  isShiftedLayout: true,
+  blurIntensity: 'frosted',
+  theme: 'dark',
+  setActiveProject: (project) => set({ activeProject: project }),
+  setScrollProgress: (progress, velocity = 0) =>
+    set({ scrollProgress: progress, scrollVelocity: velocity }),
+  setActiveDomain: (domain) => set({ activeDomain: domain }),
+  setDpr: (dpr) => set({ dpr }),
+  setTransmissionSamples: (samples) => set({ transmissionSamples: samples }),
+  setIsLowQuality: (low) => set({ isLowQuality: low, transmissionSamples: low ? 3 : 6 }),
+  setIsShiftedLayout: (shifted) => set({ isShiftedLayout: shifted }),
+  setBlurIntensity: (intensity) => set({ blurIntensity: intensity }),
+  setTheme: (theme) => set({ theme }),
+}))
+
+// Expose on window in dev mode for testing and studio inspection
+if (typeof window !== 'undefined') {
+  ;(window as any).__PORTFOLIO_STORE__ = usePortfolioStore
+}
