@@ -7,32 +7,17 @@ import { ImageLightbox } from './overlay/ImageLightbox'
 import { usePortfolioStore } from './store'
 
 export default function App() {
-  const theme = usePortfolioStore((s) => s.theme)
   const setScrollProgress = usePortfolioStore((s) => s.setScrollProgress)
-  const setTheme = usePortfolioStore((s) => s.setTheme)
-  const isDark = theme === 'dark'
 
   useEffect(() => {
-    // Keep html & body backgrounds synchronized with active theme
-    if (isDark) {
-      document.documentElement.classList.add('dark-theme')
-      document.body.style.backgroundColor = '#0B0B0E'
-      document.body.style.color = '#F4F3EF'
-    } else {
-      document.documentElement.classList.remove('dark-theme')
-      document.body.style.backgroundColor = '#F4F3EF'
-      document.body.style.color = '#111115'
-    }
-  }, [isDark])
+    // Light theme only
+    document.documentElement.classList.remove('dark', 'dark-theme')
+    document.body.style.backgroundColor = '#F4F3EF'
+    document.body.style.color = '#111115'
+  }, [])
 
   useEffect(() => {
-    // Check initial query params for deep-linked section or theme
     const params = new URLSearchParams(window.location.search)
-    const qTheme = params.get('theme')
-    if (qTheme === 'light' || qTheme === 'dark') {
-      setTheme(qTheme)
-    }
-
     const targetId = params.get('section') || window.location.hash.replace('#', '')
     if (targetId) {
       setTimeout(() => {
@@ -44,10 +29,10 @@ export default function App() {
         }
       }, 200)
     }
-  }, [setTheme])
+  }, [])
 
   useEffect(() => {
-    // Initialize Lenis smooth momentum scroll engine (Artemii Lebedev / Awwwards standard)
+    // Initialize Lenis smooth momentum scroll engine
     const lenis = new Lenis({
       duration: 1.3,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -81,11 +66,7 @@ export default function App() {
   }, [setScrollProgress])
 
   return (
-    <div
-      className={`min-h-screen w-full select-none transition-colors duration-500 overflow-x-hidden ${
-        isDark ? 'bg-[#0B0B0E] text-[#F4F3EF] dark-theme' : 'bg-[#F4F3EF] text-[#111115]'
-      }`}
-    >
+    <div className="min-h-screen w-full select-none bg-[#F4F3EF] text-[#111115] overflow-x-hidden font-sans">
       {/* Floating Centered Minimalist Navigation Bar */}
       <NavigationBar />
 

@@ -182,7 +182,7 @@ export const usePortfolioStore = create<PortfolioState>((set) => ({
   isLowQuality: false,
   isShiftedLayout: true,
   blurIntensity: 'frosted',
-  theme: 'dark',
+  theme: 'light',
   setActiveProject: (project) => set({ activeProject: project }),
   setActiveImage: (image) => set({ activeImage: image }),
   setScrollProgress: (progress, velocity = 0) =>

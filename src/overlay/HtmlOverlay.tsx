@@ -2,9 +2,7 @@ import { ContactDrawer } from './ContactDrawer'
 import { usePortfolioStore } from '../store'
 
 export function HtmlOverlay() {
-  const theme = usePortfolioStore((s) => s.theme)
   const setActiveImage = usePortfolioStore((s) => s.setActiveImage)
-  const isDark = theme === 'dark'
 
   const base = import.meta.env.BASE_URL.replace(/\/$/, '')
 
@@ -59,7 +57,7 @@ export function HtmlOverlay() {
   }
 
   return (
-    <div className={`w-full text-left font-sans ${isDark ? 'text-[#F4F3EF]' : 'text-[#111115]'}`}>
+    <div className="w-full text-left font-sans text-[#111115]">
       {/* ============================================================ */}
       {/* SECTION 1: HERO / INTRO                                       */}
       {/* ============================================================ */}
@@ -73,7 +71,7 @@ export function HtmlOverlay() {
           <span className="mx-2">&bull;</span>
           <span className="font-devanagari font-bold text-sm">ॲशले घोष</span>
           <span className="mx-2">&bull;</span>
-          <span>Maharashtra, India</span>
+          <span>Mumbai, India</span>
         </div>
 
         {/* Display Headline - Solid editorial typography with Delight, zero gradient text */}
@@ -84,7 +82,7 @@ export function HtmlOverlay() {
         {/* Bio Introduction */}
         <p className="text-base sm:text-xl md:text-2xl font-normal leading-relaxed opacity-90 mb-10 max-w-3xl">
           I am <strong className="font-semibold text-current">Ashley Ajoy Ghose</strong>, a
-          multidisciplinary developer and designer based out of Maharashtra. I build
+          multidisciplinary developer and designer based out of Mumbai. I build
           high-impact graphic web designs and robust mobile applications that bridge raw
           technical engineering with striking visual identity.
         </p>
@@ -93,21 +91,13 @@ export function HtmlOverlay() {
         <div className="flex flex-wrap items-center gap-4 mb-16">
           <button
             onClick={() => handleJump('works')}
-            className={`px-8 py-3.5 rounded text-xs font-mono font-bold tracking-wider uppercase transition-opacity cursor-pointer ${
-              isDark
-                ? 'bg-white text-[#0B0B0E] hover:opacity-90'
-                : 'bg-[#111115] text-[#F4F3EF] hover:opacity-90'
-            }`}
+            className="px-8 py-3.5 rounded text-xs font-mono font-bold tracking-wider uppercase bg-[#111115] text-[#F4F3EF] hover:opacity-90 transition-opacity cursor-pointer"
           >
             Explore My Works
           </button>
           <button
             onClick={() => handleJump('contact')}
-            className={`px-8 py-3.5 rounded text-xs font-mono font-bold tracking-wider uppercase transition-colors cursor-pointer ${
-              isDark
-                ? 'bg-white/10 text-white hover:bg-white/20'
-                : 'bg-black/5 text-[#111115] hover:bg-black/10'
-            }`}
+            className="px-8 py-3.5 rounded text-xs font-mono font-bold tracking-wider uppercase bg-black/5 text-[#111115] border border-black/10 hover:bg-black/10 transition-colors cursor-pointer"
           >
             Get in Touch
           </button>
@@ -465,7 +455,7 @@ export function HtmlOverlay() {
         {/* Personal Colophon Footer */}
         <footer className="pt-8 border-t border-current/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono opacity-60">
           <div>
-            &copy; {new Date().getFullYear()} ASHLEY AJOY GHOSE &bull; ॲशले घोष &bull; MAHARASHTRA, INDIA
+            &copy; {new Date().getFullYear()} ASHLEY AJOY GHOSE &bull; ॲशले घोष &bull; MUMBAI, INDIA
           </div>
           <div>
             <a
