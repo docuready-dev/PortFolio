@@ -6,6 +6,18 @@ import ashleyPortrait from '../assets/ashley/ashley-portrait.jpg'
 export function HtmlOverlay() {
   const setActiveImage = usePortfolioStore((s) => s.setActiveImage)
   const [activeProjectTab, setActiveProjectTab] = useState<string>('learnready')
+  const [activeFontTab, setActiveFontTab] = useState<string>('delight')
+  const [activePaletteTab, setActivePaletteTab] = useState<string>('alabaster')
+  const [copiedHex, setCopiedHex] = useState<string | null>(null)
+
+  const handleCopyHex = (hex: string) => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(hex).then(() => {
+        setCopiedHex(hex)
+        setTimeout(() => setCopiedHex(null), 2200)
+      })
+    }
+  }
 
   const base = import.meta.env.BASE_URL.replace(/\/$/, '')
 
@@ -261,6 +273,171 @@ export function HtmlOverlay() {
   ]
 
   const currentProject = projectsData.find((p) => p.id === activeProjectTab) || projectsData[0]
+
+  const fontSpecimens = [
+    {
+      id: 'delight',
+      name: 'Delight',
+      classification: 'Geometric Modern Sans',
+      foundry: 'LeadPulse Core Identity',
+      fontClass: 'font-delight',
+      badge: 'Primary Brand Typeface',
+      displayHeadline: 'Geometric clarity engineered for monumental and sub-pixel scale.',
+      quote:
+        'Delight bridges the razor-sharp precision of mid-century Swiss geometry with the warmth of humanist proportions. Every apex, counter, and terminal is optimized for effortless cadence across complex digital systems.',
+      characterReel: 'Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789 & # $ € @ % ! ?',
+      weights: ['Light (300)', 'Regular (400)', 'Medium (500)', 'SemiBold (600)', 'Bold (700)', 'Black (900)'],
+      curatorNote:
+        'My go-to cornerstone typeface. Its optical neutrality never competes with product content, while its subtle curved terminals bestow unmistakable bespoke warmth.',
+      appliedIn: ['Ashley Ghose Portfolio', 'LeadPulse SaaS Suite', 'LearnReady Architecture'],
+    },
+    {
+      id: 'mercado',
+      name: 'Mercado',
+      classification: 'Haute Couture Editorial Serif',
+      foundry: 'Storytype Studio',
+      fontClass: 'font-mercado',
+      badge: 'High-Fashion Editorial Display',
+      displayHeadline: 'Sculptural elegance born of vertical tension and razor-sharp contrast.',
+      quote:
+        'Mercado embodies the dramatic gravitas of Parisian luxury ateliers and bespoke horology volumes. Its dramatic thick-to-thin stroke transition and tapered bracketed hairlines turn solitary words into sculptural artifacts.',
+      characterReel: 'Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789 & “ ” « » §',
+      weights: ['Regular (400)', 'Medium (500)', 'Italic (400i)', 'Bold (700)'],
+      curatorNote:
+        'When a client brand demands uncompromising prestige, Mercado establishes an instant aura of heritage, luxury, and high-editorial confidence.',
+      appliedIn: ['Luxury Identity Marques', 'Editorial Monographs', 'Prestige Title Cards'],
+    },
+    {
+      id: 'creato',
+      name: 'Creato Display',
+      classification: 'Architectural Neogrotesk',
+      foundry: 'Definite Precision Heritage',
+      fontClass: 'font-creato',
+      badge: 'Swiss Modernist Precision',
+      displayHeadline: 'Mathematical order and tight mechanical cadence.',
+      quote:
+        'Creato Display strips away all superfluous ornament in pursuit of absolute structural truth. Designed with tight tracking, ink-traps, and rationalist geometry, it is the purest instrument for data-dense telemetry.',
+      characterReel: '01 02 03 04 05 06 [SYSTEM READY] // COORD: 18.9220° N, 72.8347° E • LATENCY 0.12ms',
+      weights: ['Thin (100)', 'Light (300)', 'Regular (400)', 'Medium (500)', 'Bold (700)', 'Black (900)'],
+      curatorNote:
+        'Indispensable for technical dashboards, spatial wayfinding, and micro-metric indices where information density must read with instant clarity.',
+      appliedIn: ['Kroma Spatial Wayfinding', 'Flight Booking Ledgers', 'Enterprise Analytics'],
+    },
+    {
+      id: 'milligram',
+      name: 'Milligram Macro',
+      classification: 'Heavy Monolithic Display',
+      foundry: 'Zetafonts Foundry',
+      fontClass: 'font-milligram',
+      badge: 'Monumental Physical Weight',
+      displayHeadline: 'Monumental weight that commands physical and digital space.',
+      quote:
+        'Milligram Macro by Zetafonts reclaims the tactile power of 20th-century woodblock posters and architectural monoliths. Its dense letterforms lock together with sculptural tension, providing singular visual authority.',
+      characterReel: 'MONOLITHIC SCALE • ARCHITECTURAL DISPLAY • HEAVY IMPACT 2026',
+      weights: ['Regular (400)', 'Bold (700)', 'Heavy (900)'],
+      curatorNote:
+        'The ultimate accent for bold architectural wayfinding and spatial signage. It creates monumental visual anchors that demand attention.',
+      appliedIn: ['Spatial Exhibition Totems', 'Architectural Banners', 'Hero Title Treatments'],
+    },
+    {
+      id: 'cormorant',
+      name: 'Cormorant Garamond',
+      classification: 'Classic Literary Poise',
+      foundry: 'Christian Thalmann & Claude Garamont Heritage',
+      fontClass: 'font-cormorant',
+      badge: 'Timeless Literary Poise',
+      displayHeadline: 'The quiet, intellectual whisper of classical editorial proportions.',
+      quote:
+        'Derived from Claude Garamont’s 16th-century masterworks, Cormorant breathes traditional bookcraft into contemporary digital screens. Its fluid terminals, delicate ligatures, and graceful italic rhythm evoke timeless intellectual prestige.',
+      characterReel: '“Design is not merely what it looks like and feels like. Design is how it works.” — Claude Garamont Tradition',
+      weights: ['Light (300)', 'Regular (400)', 'Medium (500)', 'SemiBold (600)', 'Bold (700)'],
+      curatorNote:
+        'I weave Cormorant into long-form editorial essays, project manifestos, and artist colophons to give readers a pause of reflective literary calm.',
+      appliedIn: ['Design Philosophy Essays', 'Artist Colophons', 'Architectural Monographs'],
+    },
+  ]
+
+  const palettesData = [
+    {
+      id: 'alabaster',
+      name: 'Warm Alabaster & Obsidian Ink',
+      theme: 'Editorial Art Monograph',
+      concept: 'Physical Japanese washi parchment, warm alabaster linen, and deep obsidian carbon ink. Timeless restraint with zero digital glare.',
+      canvasBg: '#F4F3EF',
+      cardBg: '#FFFFFF',
+      textPrimary: '#111115',
+      textMuted: '#686870',
+      accentColor: '#D4AF37',
+      accentLabel: 'Champagne Gold',
+      swatches: [
+        { name: 'Alabaster Canvas', hex: '#F4F3EF', role: 'Ambient Background' },
+        { name: 'Obsidian Ink', hex: '#111115', role: 'Display Typography' },
+        { name: 'Muted Slate', hex: '#686870', role: 'Secondary Metadata' },
+        { name: 'Architectural Rule', hex: '#E8E6DF', role: 'Structural Dividers' },
+        { name: 'Champagne Gold', hex: '#D4AF37', role: 'Bespoke Accent' },
+      ],
+    },
+    {
+      id: 'terracotta',
+      name: 'Terracotta Solstice & Sandstone',
+      theme: 'Organic Tactile Warmth',
+      concept: 'Sun-baked Mediterranean earthenware, warm sandstone plaster, and rich espresso typography. Grounded human-first warmth.',
+      canvasBg: '#F8F5F0',
+      cardBg: '#FFFFFF',
+      textPrimary: '#241E1C',
+      textMuted: '#857469',
+      accentColor: '#C05C35',
+      accentLabel: 'Terracotta Sienna',
+      swatches: [
+        { name: 'Sandstone Silk', hex: '#F8F5F0', role: 'Ambient Background' },
+        { name: 'Terracotta Sienna', hex: '#C05C35', role: 'Focal Accent' },
+        { name: 'Deep Espresso', hex: '#241E1C', role: 'Primary Typography' },
+        { name: 'Warm Greige', hex: '#857469', role: 'Secondary Metadata' },
+        { name: 'Raw Linen', hex: '#E2D7C8', role: 'Divider & Borders' },
+      ],
+    },
+    {
+      id: 'prismatic',
+      name: 'Prismatic Dichroic & Cyan',
+      theme: 'Spatial Refraction & Optics',
+      concept: 'Inspired by Kroma Spatial: kinetic optical glass, daylight prism raytracing, and high-frequency luminescence over obsidian void.',
+      canvasBg: '#0D1117',
+      cardBg: '#161B22',
+      textPrimary: '#F4F5F8',
+      textMuted: '#8B949E',
+      accentColor: '#38E1FF',
+      accentLabel: 'Prismatic Cyan',
+      swatches: [
+        { name: 'Cosmic Obsidian', hex: '#0D1117', role: 'Ambient Void' },
+        { name: 'Prismatic Cyan', hex: '#38E1FF', role: 'Optical Refraction' },
+        { name: 'Dichroic Violet', hex: '#8B5CF6', role: 'Chromatic Shift' },
+        { name: 'Starlight Glaze', hex: '#F4F5F8', role: 'Display Typography' },
+        { name: 'Sub-pixel Slate', hex: '#8B949E', role: 'Telemetry Metadata' },
+      ],
+    },
+    {
+      id: 'sage',
+      name: 'Forest Sage & Raw Silk',
+      theme: 'Botanical Architectural Poise',
+      concept: 'Alpine evergreen forests, misty eucalyptus, and raw undyed silk. Serene architectural sanctuary for conscious digital experiences.',
+      canvasBg: '#F3F5F2',
+      cardBg: '#FFFFFF',
+      textPrimary: '#19241E',
+      textMuted: '#5A7A68',
+      accentColor: '#2E4F3E',
+      accentLabel: 'Alpine Cypress',
+      swatches: [
+        { name: 'Raw Silk Canvas', hex: '#F3F5F2', role: 'Ambient Background' },
+        { name: 'Alpine Cypress', hex: '#2E4F3E', role: 'Primary Anchor' },
+        { name: 'Misty Eucalyptus', hex: '#5A7A68', role: 'Secondary Tone' },
+        { name: 'Deep Spruce', hex: '#19241E', role: 'Sharp Typography' },
+        { name: 'Lichen Neutral', hex: '#DDE4DC', role: 'Borders & Rules' },
+      ],
+    },
+  ]
+
+  const currentFont = fontSpecimens.find((f) => f.id === activeFontTab) || fontSpecimens[0]
+  const currentPalette = palettesData.find((p) => p.id === activePaletteTab) || palettesData[0]
 
   const handleJump = (id: string) => {
     const el = document.getElementById(id)
@@ -679,6 +856,316 @@ export function HtmlOverlay() {
       </section>
 
       {/* ============================================================ */}
+      {/* SECTION 5: CREATIVE DIRECTION, PALETTES & TYPOGRAPHY          */}
+      {/* ============================================================ */}
+      <section
+        id="aesthetics"
+        className="min-h-screen w-full flex flex-col justify-center py-28 sm:py-36 px-6 sm:px-12 md:px-16 lg:px-24 max-w-7xl mx-auto text-left border-t border-current/15"
+      >
+        <div className="text-xs font-mono tracking-wider uppercase opacity-50 mb-4">
+          05. Creative Direction, Palettes & Typography
+        </div>
+
+        <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-6 leading-tight">
+          The Art of Modern Chromatics & Exquisite Type.
+        </h2>
+
+        <p className="text-xl sm:text-3xl font-light leading-relaxed max-w-4xl opacity-90 mb-6">
+          I hold a deep reverence for visual atmosphere. Code gives digital platforms their heartbeat, but typography and color give them emotional authority.
+        </p>
+
+        <p className="text-base sm:text-lg opacity-75 leading-relaxed max-w-3xl mb-16 font-light">
+          When curating fonts and composing chromatic palettes, I never settle for default system stacks or cold SaaS boilerplates. I obsess over the tactile dialogue between geometric sans-serifs, high-fashion display serifs, and quiet, deliberate color undertones that evoke immediate visceral trust and utter premiumness.
+        </p>
+
+        {/* ------------------------------------------------------------ */}
+        {/* SUBSECTION A: EXQUISITE FONTS SHOWCASE                        */}
+        {/* ------------------------------------------------------------ */}
+        <div className="mb-24">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 pb-4 border-b border-current/15 mb-8">
+            <div>
+              <span className="text-xs font-mono uppercase tracking-wider opacity-60 block mb-1">
+                Specimen Collection
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-bold">
+                Exquisite Typefaces & Anatomical Character.
+              </h3>
+            </div>
+            <div className="text-xs font-mono opacity-50 uppercase tracking-wider">
+              Select any typeface to inspect live specimen
+            </div>
+          </div>
+
+          {/* Typeface Switcher Pills */}
+          <div className="flex flex-wrap items-center gap-2.5 mb-10 pb-6 border-b border-current/15">
+            {fontSpecimens.map((font) => {
+              const isActive = activeFontTab === font.id
+              return (
+                <button
+                  key={font.id}
+                  onClick={() => setActiveFontTab(font.id)}
+                  className={`px-5 py-2.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                    isActive
+                      ? 'bg-[#111115] text-[#F4F3EF] shadow-md shadow-black/10'
+                      : 'bg-black/5 text-[#111115] hover:bg-black/10 border border-black/10'
+                  }`}
+                >
+                  {font.name} <span className="opacity-60 ml-1">({font.classification.split(' ')[0]})</span>
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Active Typeface Specimen Stage */}
+          <div className="space-y-10">
+            {/* Header: Name, Classification, Weights */}
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-current/10">
+              <div>
+                <div className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2">
+                  {currentFont.classification} &bull; {currentFont.foundry}
+                </div>
+                <div className={`text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight ${currentFont.fontClass}`}>
+                  {currentFont.name}
+                </div>
+              </div>
+
+              <div className="flex flex-col items-start lg:items-end gap-2">
+                <span className="text-[11px] font-mono uppercase tracking-wider opacity-50">
+                  Available Weights
+                </span>
+                <div className="flex flex-wrap gap-1.5 justify-start lg:justify-end">
+                  {currentFont.weights.map((w) => (
+                    <span
+                      key={w}
+                      className="px-2.5 py-1 rounded bg-black/5 text-[11px] font-mono opacity-80"
+                    >
+                      {w}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Monumental Display Headline Specimen */}
+            <div className="py-6">
+              <span className="text-[11px] font-mono uppercase tracking-wider opacity-50 block mb-3">
+                Live Display Specimen
+              </span>
+              <p
+                className={`text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.12] tracking-tight text-[#111115] ${currentFont.fontClass}`}
+              >
+                {currentFont.displayHeadline}
+              </p>
+            </div>
+
+            {/* Editorial Body Quote & Curator Note */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-8 border-t border-current/10">
+              <div>
+                <span className="text-[11px] font-mono uppercase tracking-wider opacity-50 block mb-2">
+                  Anatomical Essence & Rhythm
+                </span>
+                <p className="text-base sm:text-lg opacity-85 leading-relaxed font-light">
+                  {currentFont.quote}
+                </p>
+              </div>
+
+              <div>
+                <span className="text-[11px] font-mono uppercase tracking-wider opacity-50 block mb-2">
+                  Why I Curate This Typeface
+                </span>
+                <p className="text-base sm:text-lg opacity-85 leading-relaxed font-light mb-4">
+                  {currentFont.curatorNote}
+                </p>
+                <div className="text-xs font-mono opacity-60">
+                  <span className="opacity-50">Applied in:</span> {currentFont.appliedIn.join(' • ')}
+                </div>
+              </div>
+            </div>
+
+            {/* Character Set & Glyph Reel */}
+            <div className="p-6 sm:p-8 rounded-2xl bg-black/[0.03] border border-black/10">
+              <div className="text-[11px] font-mono uppercase tracking-wider opacity-50 mb-3">
+                Glyph & Character Set
+              </div>
+              <div
+                className={`text-lg sm:text-2xl tracking-widest break-words leading-loose opacity-90 ${currentFont.fontClass}`}
+              >
+                {currentFont.characterReel}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ------------------------------------------------------------ */}
+        {/* SUBSECTION B: MODERN ELEGANT COLOR PALETTES                   */}
+        {/* ------------------------------------------------------------ */}
+        <div>
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 pb-4 border-b border-current/15 mb-8">
+            <div>
+              <span className="text-xs font-mono uppercase tracking-wider opacity-60 block mb-1">
+                Atmospheric Chromatics
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-bold">
+                Curated Palettes for Modern Elegance.
+              </h3>
+            </div>
+            <div className="text-xs font-mono opacity-50 uppercase tracking-wider">
+              Click any swatch to copy HEX code &bull; Preview updates live
+            </div>
+          </div>
+
+          {/* Palette Selector Tabs */}
+          <div className="flex flex-wrap items-center gap-2.5 mb-10 pb-6 border-b border-current/15">
+            {palettesData.map((pal) => {
+              const isActive = activePaletteTab === pal.id
+              return (
+                <button
+                  key={pal.id}
+                  onClick={() => setActivePaletteTab(pal.id)}
+                  className={`px-5 py-2.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                    isActive
+                      ? 'bg-[#111115] text-[#F4F3EF] shadow-md shadow-black/10'
+                      : 'bg-black/5 text-[#111115] hover:bg-black/10 border border-black/10'
+                  }`}
+                >
+                  {pal.name}
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Palette Details & Swatches */}
+          <div className="space-y-10">
+            <div className="flex flex-col lg:flex-row lg:items-baseline justify-between gap-4">
+              <div>
+                <span className="text-xs font-mono uppercase tracking-wider opacity-60 block mb-1">
+                  Palette Inspiration: {currentPalette.theme}
+                </span>
+                <h4 className="text-2xl sm:text-3xl font-bold text-[#111115]">
+                  {currentPalette.name}
+                </h4>
+              </div>
+              <p className="text-sm sm:text-base opacity-75 max-w-xl font-light leading-relaxed">
+                {currentPalette.concept}
+              </p>
+            </div>
+
+            {/* Swatch Strip with Click-to-Copy */}
+            <div>
+              <div className="flex items-center justify-between mb-3 text-xs font-mono">
+                <span className="uppercase tracking-wider opacity-50">Chromatic Swatches (5 Tones)</span>
+                {copiedHex && (
+                  <span className="text-emerald-700 font-bold uppercase tracking-wider">
+                    Copied {copiedHex} to clipboard! ✓
+                  </span>
+                )}
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                {currentPalette.swatches.map((swatch) => (
+                  <div
+                    key={swatch.hex}
+                    onClick={() => handleCopyHex(swatch.hex)}
+                    className="group cursor-pointer p-4 rounded-2xl bg-white border border-black/10 shadow-sm hover:shadow-md transition-all text-left"
+                  >
+                    <div
+                      className="w-full h-24 rounded-xl mb-3 shadow-inner border border-black/5 transition-transform group-hover:scale-[1.02]"
+                      style={{ backgroundColor: swatch.hex }}
+                    />
+                    <div className="text-xs font-bold font-mono text-[#111115] flex items-center justify-between">
+                      <span>{swatch.hex}</span>
+                      <span className="text-[10px] opacity-0 group-hover:opacity-100 uppercase tracking-wider transition-opacity text-emerald-700 font-semibold">
+                        Copy
+                      </span>
+                    </div>
+                    <div className="text-xs font-semibold text-[#111115] mt-1">
+                      {swatch.name}
+                    </div>
+                    <div className="text-[11px] font-mono opacity-55 mt-0.5">
+                      {swatch.role}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Live Interactive Specimen Harmony Canvas */}
+            <div
+              className="p-8 sm:p-12 rounded-3xl transition-colors duration-500 border shadow-lg"
+              style={{
+                backgroundColor: currentPalette.canvasBg,
+                borderColor: currentPalette.swatches[3]?.hex || '#E8E6DF',
+                color: currentPalette.textPrimary,
+              }}
+            >
+              <div className="flex items-center justify-between pb-6 mb-8 border-b" style={{ borderColor: currentPalette.swatches[3]?.hex || '#E8E6DF' }}>
+                <div className="flex items-center gap-2">
+                  <span
+                    className="inline-block w-2.5 h-2.5 rounded-full"
+                    style={{ backgroundColor: currentPalette.accentColor }}
+                  />
+                  <span className="text-xs font-mono uppercase tracking-wider font-semibold opacity-80">
+                    Live Palette Harmonics &bull; {currentPalette.name}
+                  </span>
+                </div>
+                <div className="text-[11px] font-mono opacity-60 uppercase tracking-wider">
+                  WCAG AAA Contrast
+                </div>
+              </div>
+
+              <div className="max-w-3xl space-y-6">
+                <div
+                  className="inline-block px-3.5 py-1 rounded-full text-xs font-mono font-semibold uppercase tracking-wider"
+                  style={{
+                    backgroundColor: currentPalette.swatches[3]?.hex || '#E8E6DF',
+                    color: currentPalette.textPrimary,
+                  }}
+                >
+                  {currentPalette.theme} Specimen
+                </div>
+
+                <h5
+                  className="text-3xl sm:text-5xl font-black tracking-tight leading-tight"
+                  style={{ color: currentPalette.textPrimary }}
+                >
+                  Atmosphere, contrast, and quiet tactile authority.
+                </h5>
+
+                <p
+                  className="text-base sm:text-lg font-light leading-relaxed max-w-2xl"
+                  style={{ color: currentPalette.textMuted }}
+                >
+                  This harmonic spectrum unites deep legibility with bespoke elegance. Every button, heading, and hairline divider is tuned to feel effortless, memorable, and authentically human.
+                </p>
+
+                <div className="pt-4 flex flex-wrap items-center gap-4">
+                  <div
+                    className="px-6 py-3 rounded-lg text-xs font-mono font-bold uppercase tracking-wider shadow-sm"
+                    style={{
+                      backgroundColor: currentPalette.accentColor,
+                      color: currentPalette.id === 'prismatic' ? '#0B0C10' : '#FFFFFF',
+                    }}
+                  >
+                    {currentPalette.accentLabel} Accent
+                  </div>
+
+                  <div
+                    className="px-6 py-3 rounded-lg text-xs font-mono font-bold uppercase tracking-wider border"
+                    style={{
+                      borderColor: currentPalette.textPrimary,
+                      color: currentPalette.textPrimary,
+                    }}
+                  >
+                    Secondary Control
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
       {/* SECTION 6: CONTACT & CONNECT                                 */}
       {/* ============================================================ */}
       <section
@@ -686,15 +1173,15 @@ export function HtmlOverlay() {
         className="min-h-screen w-full flex flex-col justify-center py-28 sm:py-36 px-6 sm:px-12 md:px-16 lg:px-24 max-w-7xl mx-auto text-left border-t border-current/15"
       >
         <div className="text-xs font-mono tracking-wider uppercase opacity-50 mb-4">
-          05. Get In Touch
+          06. Direct Engagement & Enquiry
         </div>
 
         <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-6 leading-tight">
-          Let's Work Together.
+          Start a Conversation.
         </h2>
 
         <p className="text-lg sm:text-2xl font-light opacity-85 leading-relaxed max-w-3xl mb-12">
-          Whether you have a new venture in mind, need a bespoke web platform designed and built, or are looking to collaborate on a new digital product, reach out below.
+          Whether you have a new venture in mind, need a bespoke web platform designed and built, or are looking to collaborate on high-impact digital experiences, dispatch your enquiry directly below.
         </p>
 
         {/* Contact Drawer without card outlines */}

@@ -10,15 +10,7 @@ export function ContactDrawer() {
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-    }, 600)
-  }
+  const [hasCopied, setHasCopied] = useState(false)
 
   const domainOptions = [
     'Graphic Web Design',
@@ -26,6 +18,79 @@ export function ContactDrawer() {
     'Full-Stack Applications',
     'Design Systems & UI/UX',
   ]
+
+  // Formatted message payload for WhatsApp & Email
+  const getFormattedMessage = () => {
+    return [
+      `*New Project Enquiry — Ashley Ghose Portfolio*`,
+      `• Client Name: ${formData.name.trim() || 'Client'}`,
+      `• Email Address: ${formData.email.trim() || 'Not specified'}`,
+      `• Project Scope: ${formData.domain}`,
+      `• Project Vision & Goals:`,
+      `${formData.message.trim() || 'No additional details provided'}`,
+      `• Location Target: Mumbai, India (Global Remote)`,
+    ].join('\n')
+  }
+
+  const getWhatsAppUrl = () => {
+    const text = getFormattedMessage()
+    return `https://wa.me/919004804043?text=${encodeURIComponent(text)}`
+  }
+
+  const getMailtoUrl = () => {
+    const subject = `Project Enquiry [${formData.domain}]: ${formData.name.trim() || 'New Client'}`
+    const body = getFormattedMessage().replace(/\*/g, '')
+    return `mailto:ashleyghose64@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    const waUrl = getWhatsAppUrl()
+    const mailUrl = getMailtoUrl()
+    const rawText = getFormattedMessage().replace(/\*/g, '')
+
+    // 1. Copy formatted text to clipboard
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(rawText).catch(() => {})
+      }
+    } catch (_) {}
+
+    // 2. Open WhatsApp directly in new tab/app
+    try {
+      window.open(waUrl, '_blank', 'noopener,noreferrer')
+    } catch (_) {}
+
+    // 3. Trigger default email client via hidden anchor
+    setTimeout(() => {
+      try {
+        const link = document.createElement('a')
+        link.href = mailUrl
+        link.target = '_blank'
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+      } catch (_) {}
+    }, 400)
+
+    // 4. Show success confirmation hub
+    setTimeout(() => {
+      setIsSubmitting(false)
+      setIsSubmitted(true)
+    }, 500)
+  }
+
+  const copyToClipboard = () => {
+    const text = getFormattedMessage().replace(/\*/g, '')
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        setHasCopied(true)
+        setTimeout(() => setHasCopied(false), 2500)
+      })
+    }
+  }
 
   return (
     <div className="w-full py-8 text-left text-[#111115]">
@@ -113,27 +178,71 @@ export function ContactDrawer() {
               <span className="text-xs font-mono uppercase tracking-wider font-semibold opacity-70">
                 Project Enquiry
               </span>
-              <span className="text-[11px] font-mono opacity-40">Direct Dispatch</span>
+              <span className="text-[11px] font-mono opacity-60 text-emerald-700 font-medium">
+                Dual Dispatch: WhatsApp + Email
+              </span>
             </div>
 
             {isSubmitted ? (
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="py-10 text-left"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="py-4 text-left"
               >
-                <div className="text-xs font-mono uppercase tracking-wider text-emerald-600 mb-2 font-semibold">
-                  Enquiry Dispatched
+                <div className="inline-block px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200 mb-4 font-semibold">
+                  ✓ Dispatch Activated
                 </div>
-                <h4 className="text-2xl font-bold mb-3">Thank you for reaching out.</h4>
-                <p className="text-sm opacity-80 max-w-md mb-6 leading-relaxed">
-                  I will personally review your project note and reply to your email within 24 hours.
+                <h4 className="text-2xl sm:text-3xl font-black mb-3">Enquiry Prepared for Ashley.</h4>
+                <p className="text-sm opacity-80 max-w-lg mb-6 leading-relaxed">
+                  We have prepared and opened your project brief. To ensure Ashley receives it immediately, you can confirm via WhatsApp or Email below:
                 </p>
+
+                {/* Direct Channel Action Buttons */}
+                <div className="space-y-3 mb-6">
+                  <a
+                    href={getWhatsAppUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between px-5 py-3.5 rounded-xl bg-[#111115] text-[#F4F3EF] hover:opacity-90 transition-opacity font-mono text-xs font-bold uppercase tracking-wider"
+                  >
+                    <span>Send on WhatsApp (+91 90048 04043)</span>
+                    <span>↗</span>
+                  </a>
+
+                  <a
+                    href={getMailtoUrl()}
+                    className="flex items-center justify-between px-5 py-3.5 rounded-xl bg-black/5 border border-black/15 text-[#111115] hover:bg-black/10 transition-colors font-mono text-xs font-bold uppercase tracking-wider"
+                  >
+                    <span>Send via Email (ashleyghose64@gmail.com)</span>
+                    <span>↗</span>
+                  </a>
+                </div>
+
+                {/* Copy Text Option */}
+                <div className="p-4 rounded-xl bg-[#F8F7F4] border border-black/10 mb-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[11px] font-mono uppercase tracking-wider opacity-60">
+                      Formatted Brief Preview
+                    </span>
+                    <button
+                      type="button"
+                      onClick={copyToClipboard}
+                      className="text-xs font-mono font-semibold underline cursor-pointer hover:opacity-75"
+                    >
+                      {hasCopied ? 'Copied to Clipboard! ✓' : 'Copy Brief Text'}
+                    </button>
+                  </div>
+                  <pre className="text-xs font-mono opacity-80 whitespace-pre-wrap leading-relaxed max-h-32 overflow-y-auto">
+                    {getFormattedMessage().replace(/\*/g, '')}
+                  </pre>
+                </div>
+
                 <button
+                  type="button"
                   onClick={() => setIsSubmitted(false)}
                   className="text-xs font-mono uppercase tracking-wider underline hover:opacity-75 cursor-pointer font-semibold"
                 >
-                  Send Another Enquiry
+                  Edit Brief & Send Another
                 </button>
               </motion.div>
             ) : (
@@ -204,13 +313,19 @@ export function ContactDrawer() {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-4 rounded-xl text-xs font-mono font-bold tracking-wider uppercase transition-opacity cursor-pointer bg-[#111115] text-[#F4F3EF] hover:opacity-90 disabled:opacity-50 shadow-md"
-                >
-                  {isSubmitting ? 'Transmitting Enquiry...' : 'Send Enquiry to Ashley'}
-                </button>
+                <div className="space-y-2 pt-2">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-4 rounded-xl text-xs font-mono font-bold tracking-wider uppercase transition-all cursor-pointer bg-[#111115] text-[#F4F3EF] hover:opacity-90 disabled:opacity-50 shadow-md flex items-center justify-center gap-2"
+                  >
+                    <span>{isSubmitting ? 'Routing Directly...' : 'Dispatch Enquiry Directly (WhatsApp & Email)'}</span>
+                    <span>↗</span>
+                  </button>
+                  <div className="text-[11px] font-mono text-center opacity-55">
+                    Routes directly to Ashley's WhatsApp (+91 90048 04043) and personal email
+                  </div>
+                </div>
               </form>
             )}
           </div>

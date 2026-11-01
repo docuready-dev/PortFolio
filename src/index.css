@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Italiana&family=Syne:wght@400;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -58,6 +60,64 @@
   font-display: swap;
 }
 
+/* Creato Display - Contemporary Architectural Neogrotesk */
+@font-face {
+  font-family: 'Creato Display';
+  src: url('./assets/fonts/creato_display/CreatoDisplay-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('./assets/fonts/creato_display/CreatoDisplay-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('./assets/fonts/creato_display/CreatoDisplay-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Creato Display';
+  src: url('./assets/fonts/creato_display/CreatoDisplay-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Milligram Macro - Monumental Heavy Display Sans */
+@font-face {
+  font-family: 'Milligram Macro';
+  src: url('./assets/fonts/milligram_macro/Milligram-Macro-Regular-trial.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Milligram Macro';
+  src: url('./assets/fonts/milligram_macro/Milligram-Macro-Bold-trial.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Milligram Macro';
+  src: url('./assets/fonts/milligram_macro/Milligram-Macro-Heavy-trial.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg-alabaster: #F4F3EF;
   --surface-tint: rgba(255, 255, 255, 0.65);
@@ -73,6 +133,31 @@ body,
   margin: 0;
   padding: 0;
   font-family: 'Delight', sans-serif;
+}
+
+/* Font Family Utilities */
+.font-delight {
+  font-family: 'Delight', sans-serif;
+}
+
+.font-mercado {
+  font-family: 'Bodoni Moda', 'Italiana', Georgia, serif;
+}
+
+.font-creato {
+  font-family: 'Creato Display', sans-serif;
+}
+
+.font-milligram {
+  font-family: 'Milligram Macro', sans-serif;
+}
+
+.font-cormorant {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-syne {
+  font-family: 'Syne', sans-serif;
 }
 
 /* Custom frosted glass utility */
