@@ -11,11 +11,6 @@ export function HtmlOverlay() {
   const [activePaletteTab, setActivePaletteTab] = useState<string>('alabaster')
   const [copiedHex, setCopiedHex] = useState<string | null>(null)
   
-  // Apps Section Stack State
-  const [isAppStackPopped, setIsAppStackPopped] = useState<boolean>(false)
-  const [activeStackIndex, setActiveStackIndex] = useState<number>(0)
-  const appDeckScrollRef = useRef<HTMLDivElement>(null)
-
   // Works Section Project Gallery Deck State
   const [isProjectDeckPopped, setIsProjectDeckPopped] = useState<boolean>(true)
   const [activeProjectScreenIndex, setActiveProjectScreenIndex] = useState<number>(0)
@@ -27,13 +22,6 @@ export function HtmlOverlay() {
         setCopiedHex(hex)
         setTimeout(() => setCopiedHex(null), 2200)
       })
-    }
-  }
-
-  const scrollAppDeck = (direction: 'left' | 'right') => {
-    if (appDeckScrollRef.current) {
-      const offset = direction === 'left' ? -420 : 420
-      appDeckScrollRef.current.scrollBy({ left: offset, behavior: 'smooth' })
     }
   }
 
@@ -475,7 +463,9 @@ export function HtmlOverlay() {
         <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-end text-right">
           <div className="w-full max-w-3xl flex flex-col items-end">
             <div className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest opacity-70 mb-6">
-              <span className="font-devanagari font-bold text-sm">ashley ghose</span>
+              <span>ASHLEY GHOSE</span>
+              <span>&bull;</span>
+              <span className="font-devanagari font-bold text-sm tracking-normal">ॲशले घोष</span>
               <span>&bull;</span>
               <span>MUMBAI, INDIA</span>
             </div>
@@ -678,256 +668,35 @@ export function HtmlOverlay() {
       </section>
 
       {/* ============================================================ */}
-      {/* SECTION 4: MOBILE & APP CRAFT (INTERACTIVE CARD STACK & DECK) */}
+      {/* SECTION 4: MOBILE ARCHITECTURE & APP CRAFT                    */}
       {/* ============================================================ */}
       <section
         id="apps"
         className="min-h-screen w-full flex flex-col justify-center py-28 sm:py-36 px-6 sm:px-12 md:px-16 lg:px-24 max-w-7xl mx-auto text-left border-t border-current/15"
       >
         <div className="text-xs font-mono tracking-wider uppercase opacity-50 mb-4">
-          03. Mobile & Custom Applications
+          03. Mobile Architecture & App Craft
         </div>
 
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
-          <div>
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-tight mb-4">
-              Tactile Mobile & Custom Apps.
-            </h2>
-            <p className="text-lg sm:text-2xl font-light opacity-85 leading-relaxed max-w-3xl">
-              When developing custom apps and mobile experiences, I prioritize physical touch. Inertial gesture physics, offline resilience, and fluid 60 FPS state transitions make software feel immediate and alive.
-            </p>
-          </div>
+        <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-tight mb-6">
+          Fluid Mobile & Custom Apps.
+        </h2>
 
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setIsAppStackPopped(!isAppStackPopped)}
-              className="px-6 py-3 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-[#111115] text-[#F4F3EF] hover:opacity-90 transition-all cursor-pointer shadow-md shadow-black/10 flex items-center gap-2"
-            >
-              <span>{isAppStackPopped ? 'Collapse to Stack' : 'Pop to Open Deck'}</span>
-              <span>{isAppStackPopped ? '↓' : '→'}</span>
-            </button>
+        <p className="text-xl sm:text-3xl font-light leading-relaxed max-w-4xl opacity-90 mb-6">
+          When engineering mobile applications and custom workflows, I prioritize tactile interaction. Inertial touch physics, offline resilience, and fluid 60 FPS transitions make software feel immediate and alive.
+        </p>
 
-            {isAppStackPopped && (
-              <div className="flex items-center gap-1.5">
-                <button
-                  onClick={() => scrollAppDeck('left')}
-                  className="w-10 h-10 rounded-full bg-black/5 hover:bg-black/10 text-base font-mono font-bold flex items-center justify-center transition-colors cursor-pointer"
-                  title="Scroll left"
-                >
-                  &larr;
-                </button>
-                <button
-                  onClick={() => scrollAppDeck('right')}
-                  className="w-10 h-10 rounded-full bg-black/5 hover:bg-black/10 text-base font-mono font-bold flex items-center justify-center transition-colors cursor-pointer"
-                  title="Scroll right"
-                >
-                  &rarr;
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
+        <p className="text-base sm:text-lg opacity-75 leading-relaxed max-w-3xl mb-16 font-light">
+          Mobile engineering demands ruthless optimization. By prioritizing native gesture mechanics, local-first state caching, and strict typographic hierarchy, I ensure platforms remain battery-efficient, blazingly fast, and effortlessly responsive under all network conditions.
+        </p>
 
-        {/* Interactive Apps Display: Stack vs Popped Deck */}
-        <div className="my-10">
-          <AnimatePresence mode="wait">
-            {!isAppStackPopped ? (
-              <motion.div
-                key="collapsed-stack"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.35 }}
-                className="flex flex-col items-center justify-center py-8"
-              >
-                <div className="text-xs font-mono uppercase tracking-wider opacity-60 mb-6 flex items-center gap-2">
-                  <span>Interactive Physical Stack</span>
-                  <span>&bull;</span>
-                  <span>7 Mobile & Custom Screens</span>
-                  <span>&bull;</span>
-                  <span className="font-semibold text-[#111115]">Click to pop open and scroll deck</span>
-                </div>
-
-                <div
-                  onClick={() => setIsAppStackPopped(true)}
-                  className="relative w-full max-w-2xl h-[340px] sm:h-[420px] md:h-[480px] cursor-pointer group flex items-center justify-center select-none"
-                >
-                  <div
-                    className="absolute inset-x-8 sm:inset-x-12 top-10 sm:top-12 bottom-0 rounded-2xl bg-black/10 shadow-sm transition-transform duration-500 group-hover:rotate-[-5deg] group-hover:scale-95"
-                    style={{
-                      transform: 'rotate(-3deg) translateY(24px) scale(0.91)',
-                      zIndex: 10,
-                    }}
-                  />
-
-                  <div
-                    className="absolute inset-x-6 sm:inset-x-10 top-8 sm:top-10 bottom-0 rounded-2xl bg-[#E8E6DF] shadow-md transition-transform duration-500 group-hover:rotate-[4.5deg] group-hover:scale-97"
-                    style={{
-                      transform: 'rotate(2.5deg) translateY(18px) scale(0.94)',
-                      zIndex: 20,
-                    }}
-                  >
-                    <img
-                      src={customAppsScreenshots[3].src}
-                      alt={customAppsScreenshots[3].title}
-                      className="w-full h-full object-cover rounded-2xl opacity-60"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  <div
-                    className="absolute inset-x-4 sm:inset-x-6 top-5 sm:top-6 bottom-0 rounded-2xl bg-[#DDE4DC] shadow-lg transition-transform duration-500 group-hover:rotate-[-2.5deg] group-hover:scale-100"
-                    style={{
-                      transform: 'rotate(-2deg) translateY(10px) scale(0.97)',
-                      zIndex: 30,
-                    }}
-                  >
-                    <img
-                      src={customAppsScreenshots[1].src}
-                      alt={customAppsScreenshots[1].title}
-                      className="w-full h-full object-cover rounded-2xl opacity-80"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="absolute inset-0 rounded-2xl overflow-hidden bg-white shadow-2xl shadow-black/20 border border-black/10 flex flex-col justify-between"
-                    style={{ zIndex: 40 }}
-                  >
-                    <div className="relative w-full h-[76%] overflow-hidden bg-black/5">
-                      <img
-                        src={customAppsScreenshots[activeStackIndex].src}
-                        alt={customAppsScreenshots[activeStackIndex].title}
-                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                        loading="eager"
-                      />
-                      <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-[#111115]/90 text-[#F4F3EF] text-[10px] font-mono uppercase tracking-wider backdrop-blur-md">
-                        Stack Top &bull; {activeStackIndex + 1} of {customAppsScreenshots.length}
-                      </div>
-
-                      <div className="absolute inset-0 bg-[#111115]/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span className="px-6 py-3 rounded-full bg-white text-[#111115] text-xs font-mono font-bold uppercase tracking-wider shadow-xl transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                          Click to Pop Open & Scroll Deck &rarr;
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="p-4 sm:p-6 bg-[#FAF9F5] border-t border-black/5 flex items-center justify-between">
-                      <div className="text-left">
-                        <div className="text-[10px] font-mono uppercase tracking-wider opacity-60">
-                          {customAppsScreenshots[activeStackIndex].id.toUpperCase()} &bull; Production Screen
-                        </div>
-                        <h4 className="text-base sm:text-lg font-bold text-[#111115]">
-                          {customAppsScreenshots[activeStackIndex].title}
-                        </h4>
-                        <p className="text-xs opacity-70 line-clamp-1">
-                          {customAppsScreenshots[activeStackIndex].subtitle}
-                        </p>
-                      </div>
-
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          setActiveStackIndex((prev) => (prev + 1) % customAppsScreenshots.length)
-                        }}
-                        className="px-3 py-1.5 rounded-lg bg-black/5 hover:bg-black/10 text-[11px] font-mono uppercase tracking-wider font-semibold transition-colors cursor-pointer"
-                        title="Shuffle top card"
-                      >
-                        Next Screen &rarr;
-                      </button>
-                    </div>
-                  </motion.div>
-                </div>
-
-                <div className="mt-8 text-xs font-mono opacity-50 uppercase tracking-wider">
-                  Tip: Click the stack or button above to fan out the cards into an interactive horizontal deck
-                </div>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="popped-deck"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 15 }}
-                transition={{ duration: 0.4 }}
-                className="space-y-4"
-              >
-                <div className="flex items-center justify-between pb-3 border-b border-current/15 text-xs font-mono">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
-                    <span className="uppercase tracking-wider opacity-75 font-semibold">
-                      Popped Deck Active &bull; 7 Production Screens
-                    </span>
-                  </div>
-                  <div className="opacity-60 uppercase tracking-wider hidden sm:block">
-                    Click any screen to zoom in full lightbox &bull; Scroll horizontally
-                  </div>
-                </div>
-
-                <div
-                  ref={appDeckScrollRef}
-                  className="overflow-x-auto flex gap-6 pb-6 pt-3 snap-x snap-mandatory scrollbar-thin scroll-smooth"
-                  style={{ WebkitOverflowScrolling: 'touch' }}
-                >
-                  {customAppsScreenshots.map((shot, idx) => (
-                    <motion.div
-                      key={shot.id}
-                      initial={{ opacity: 0, x: 30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.35, delay: idx * 0.05 }}
-                      onClick={() => setActiveImage(shot)}
-                      className="w-[300px] sm:w-[420px] md:w-[480px] flex-shrink-0 snap-start text-left group cursor-zoom-in"
-                    >
-                      <div className="overflow-hidden rounded-xl bg-black/5 aspect-[16/10] mb-3 shadow-md shadow-black/5 border border-black/10 relative">
-                        <img
-                          src={shot.src}
-                          alt={shot.title}
-                          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <div className="absolute top-3 left-3 px-2.5 py-1 rounded bg-[#111115]/85 text-[#F4F3EF] text-[10px] font-mono uppercase tracking-wider backdrop-blur-md">
-                          0{idx + 1} &bull; Screen
-                        </div>
-                        <div className="absolute bottom-3 right-3 px-3 py-1 rounded bg-white/95 text-[#111115] text-[11px] font-mono font-semibold uppercase tracking-wider shadow opacity-0 group-hover:opacity-100 transition-opacity">
-                          Zoom Lightbox &rarr;
-                        </div>
-                      </div>
-
-                      <h4 className="text-base sm:text-lg font-bold group-hover:underline transition-all mb-1">
-                        {shot.title}
-                      </h4>
-                      <p className="text-xs opacity-70 leading-relaxed font-light">
-                        {shot.subtitle}
-                      </p>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <div className="flex items-center justify-between pt-3 border-t border-current/15 text-xs font-mono">
-                  <div className="opacity-50 uppercase tracking-wider">
-                    Showing 7 production interface screens
-                  </div>
-                  <button
-                    onClick={() => setIsAppStackPopped(false)}
-                    className="hover:underline font-semibold uppercase tracking-wider cursor-pointer"
-                  >
-                    &larr; Collapse Back to Card Stack
-                  </button>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* 4 Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-10 border-t border-current/15">
+        {/* 4 Pillars - Frameless Editorial Typography */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-10 border-t border-current/15 mb-16">
           <div>
             <div className="text-2xl font-bold font-mono mb-2">60 FPS</div>
             <div className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2">Gesture Physics</div>
             <p className="text-xs opacity-75 leading-relaxed font-light">
-              Inertial touch handling and fluid spring micro-interactions tailored for mobile ergonomics.
+              Inertial touch handling, natural deceleration curves, and fluid spring micro-interactions tailored for mobile ergonomics.
             </p>
           </div>
 
@@ -935,7 +704,7 @@ export function HtmlOverlay() {
             <div className="text-2xl font-bold font-mono mb-2">Offline First</div>
             <div className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2">Resilient Sync</div>
             <p className="text-xs opacity-75 leading-relaxed font-light">
-              Local cache persistence backed by cloud Firestore and MongoDB Atlas clusters.
+              Local cache persistence backed by cloud Firestore and MongoDB Atlas clusters for uninterrupted offline operation.
             </p>
           </div>
 
@@ -943,7 +712,7 @@ export function HtmlOverlay() {
             <div className="text-2xl font-bold font-mono mb-2">Responsive</div>
             <div className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2">Adaptive Grid</div>
             <p className="text-xs opacity-75 leading-relaxed font-light">
-              Engineered seamlessly from 320px handheld displays to ultrawide desktop monitors.
+              Engineered seamlessly from 320px handheld displays to foldables and ultrawide desktop monitors without layout shifts.
             </p>
           </div>
 
@@ -951,8 +720,35 @@ export function HtmlOverlay() {
             <div className="text-2xl font-bold font-mono mb-2">Bespoke UI</div>
             <div className="text-xs font-mono uppercase tracking-wider opacity-60 mb-2">Visual Hierarchy</div>
             <p className="text-xs opacity-75 leading-relaxed font-light">
-              Tailored visual identities, strict typographic scales, and high contrast.
+              Tailored visual identities, strict typographic scales, and high contrast ensuring glanceable clarity under direct daylight.
             </p>
+          </div>
+        </div>
+
+        {/* 3 Core Architecture Disciplines */}
+        <div className="pt-10 border-t border-current/15">
+          <div className="text-xs font-mono uppercase tracking-wider opacity-50 mb-6">
+            Mobile Engineering Disciplines
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            <div className="border-l-2 border-black/20 pl-5">
+              <h4 className="text-lg font-bold mb-1">Native Touch Ergonomics</h4>
+              <p className="text-xs sm:text-sm opacity-70 leading-relaxed font-light">
+                Thumb-zone layout patterns, natural swipe gestures, and tactile haptic feedback designed for effortless one-handed mobile operation.
+              </p>
+            </div>
+            <div className="border-l-2 border-black/20 pl-5">
+              <h4 className="text-lg font-bold mb-1">Memory & Battery Efficiency</h4>
+              <p className="text-xs sm:text-sm opacity-70 leading-relaxed font-light">
+                Zero-leak state management, aggressive asset caching, and minimal CPU thread blocking to keep handheld devices cool and responsive.
+              </p>
+            </div>
+            <div className="border-l-2 border-black/20 pl-5">
+              <h4 className="text-lg font-bold mb-1">Local Data Security</h4>
+              <p className="text-xs sm:text-sm opacity-70 leading-relaxed font-light">
+                End-to-end token encryption, biometric authorization, and secure keychain credential storage adhering to strict privacy standards.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -1672,7 +1468,7 @@ export function HtmlOverlay() {
 
         <footer className="pt-8 border-t border-current/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono opacity-70">
           <div>
-            &copy; {new Date().getFullYear()} ASHLEY AJOY GHOSE &bull; DOCUREADY &bull; MUMBAI, INDIA
+            &copy; {new Date().getFullYear()} ASHLEY AJOY GHOSE &bull; <span className="font-devanagari font-bold tracking-normal">ॲशले घोष</span> &bull; DOCUREADY &bull; MUMBAI, INDIA
           </div>
           <div className="flex flex-wrap items-center gap-4">
             <a
