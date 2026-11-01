@@ -451,12 +451,12 @@ export function HtmlOverlay() {
           <img
             src={ashleyPortrait}
             alt="Ashley Ghose"
-            className="w-full h-full object-cover object-left opacity-35 filter contrast-105"
+            className="w-full h-full object-cover object-left opacity-65 sm:opacity-70 filter contrast-105"
             loading="eager"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F4F3EF]/60 to-[#F4F3EF]/95" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F4F3EF]/40 via-transparent to-[#F4F3EF]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F4F3EF]/50 via-45% to-[#F4F3EF] to-75%" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#F4F3EF]/20 via-transparent to-[#F4F3EF]/90" />
         </div>
 
         {/* Foreground Content: Right Aligned */}
@@ -480,7 +480,7 @@ export function HtmlOverlay() {
             </div>
 
             <p className="text-base sm:text-xl font-normal leading-relaxed opacity-85 mb-12 max-w-2xl">
-              Based in Mumbai, India. I design high-impact graphic web platforms, fluid mobile apps, and refined typographic brand systems with ruthless attention to aesthetics, sub-100ms performance, and pure visual elegance.
+              Based in Mumbai, India. I design high-impact graphic web platforms, fluid mobile apps, and refined typographic brand systems with ruthless attention to aesthetics, instant responsiveness, and pure visual elegance.
             </p>
 
             <div className="flex flex-wrap items-center justify-end gap-4 mb-16">
