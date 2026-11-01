@@ -144,6 +144,14 @@ export function ImageLightbox() {
     setIsDragging(false)
   }
 
+  const livePlatformLink = activeImage
+    ? activeImage.title.toLowerCase().includes('learnready')
+      ? { url: 'https://docuready-dev.github.io/LearnReady/', label: 'learnready.space' }
+      : activeImage.title.toLowerCase().includes('strovr')
+      ? { url: 'https://strovr.space', label: 'strovr.space' }
+      : null
+    : null
+
   return (
     <AnimatePresence>
       {activeImage && (
@@ -164,9 +172,24 @@ export function ImageLightbox() {
           >
             {/* Title & Metadata */}
             <div className="flex flex-col">
-              <span className="font-bold text-white text-sm sm:text-base tracking-tight">
-                {activeImage.title}
-              </span>
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="font-bold text-white text-sm sm:text-base tracking-tight">
+                  {activeImage.title}
+                </span>
+                {livePlatformLink && (
+                  <a
+                    href={livePlatformLink.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 hover:bg-emerald-500/35 text-emerald-300 border border-emerald-400/30 text-[11px] font-mono font-bold tracking-wider uppercase transition-all cursor-pointer shadow-sm group"
+                    title={`Open live platform: ${livePlatformLink.label}`}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>{livePlatformLink.label}</span>
+                    <span className="text-[11px] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                  </a>
+                )}
+              </div>
               {activeImage.subtitle && (
                 <span className="opacity-60 text-xs hidden sm:inline line-clamp-1">
                   {activeImage.subtitle}

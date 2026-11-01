@@ -16,4 +16,6 @@ export interface ProjectItem {
   metrics: string[]
   accentColor: string
   tagline: string
+  liveUrl?: string
+  liveAlias?: string
 }

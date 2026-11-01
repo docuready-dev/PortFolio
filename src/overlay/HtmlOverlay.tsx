@@ -226,7 +226,9 @@ export function HtmlOverlay() {
       number: '01',
       title: 'LearnReady Psychometrics',
       discipline: 'EdTech Cognitive Testing Platform',
-      period: '2025 * 2026',
+      period: '2025 • 2026',
+      liveUrl: 'https://docuready-dev.github.io/LearnReady/',
+      liveAlias: 'learnready.space',
       description:
         'A comprehensive cognitive assessment and aptitude profiling suite engineered for schools, universities, and career counselors. Features timed adaptive evaluations across verbal, numerical, spatial, and psychometric occupational domains with real-time analytics and predictive AI career stream recommendations.',
       stack: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Firebase', 'Chart.js'],
@@ -237,7 +239,9 @@ export function HtmlOverlay() {
       number: '02',
       title: 'Custom Web & Mobile Apps',
       discipline: 'High-Density Booking & AI Platforms',
-      period: '2024 * 2026',
+      period: '2024 • 2026',
+      liveUrl: undefined,
+      liveAlias: undefined,
       description:
         'A production showcase of bespoke digital applications engineered for high conversion and effortless usability. Includes an omni-channel flight discovery and booking engine, geospatial boutique hotel reservation platform, AI audio-visual creative studio, and autonomous neural brand synthesis workspaces.',
       stack: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Mapbox GL'],
@@ -248,7 +252,9 @@ export function HtmlOverlay() {
       number: '03',
       title: 'Strovr (LeadPulse)',
       discipline: 'SaaS Outreach Engine & CRM',
-      period: '2024 * 2025',
+      period: '2024 • 2025',
+      liveUrl: 'https://strovr.space',
+      liveAlias: 'strovr.space',
       description:
         'A modern sales intelligence and outreach automation platform. Built with a unified command dashboard, visual email template studio, event-driven automated sequences, live business data extraction via SerpApi, and an intuitive customer relationship management workflow.',
       stack: ['React', 'Vite', 'Node.js', 'Express', 'Firebase', 'SerpApi'],
@@ -557,7 +563,7 @@ export function HtmlOverlay() {
             <div className="text-xs font-mono uppercase tracking-wider opacity-50 mb-2">02</div>
             <h3 className="text-xl font-bold mb-3">Frontend Engineering</h3>
             <p className="text-sm opacity-75 leading-relaxed">
-              Translating ideas into fluid web applications using React, Vite, Tailwind CSS, and TypeScript with fast sub-100ms interactions.
+              Translating ideas into fluid web applications using React, Vite, Tailwind CSS, and TypeScript with fast, instant interactions.
             </p>
           </div>
 
@@ -624,7 +630,7 @@ export function HtmlOverlay() {
               Translating blueprints into high-speed React / Vite frontends backed by Node.js, Express, Firebase Firestore, and resilient REST microservices.
             </p>
             <div className="text-xs font-mono opacity-60">
-              Sub-100ms Telemetry &bull; Real-Time Data &bull; Clean Code
+              Instant Telemetry &bull; Real-Time Data &bull; Clean Code
             </div>
           </div>
 
@@ -652,7 +658,7 @@ export function HtmlOverlay() {
               </p>
             </div>
             <div className="border-l-2 border-black/20 pl-5">
-              <h4 className="text-lg font-bold mb-1">Tactile Sub-100ms Latency</h4>
+              <h4 className="text-lg font-bold mb-1">Instant Tactile Feedback</h4>
               <p className="text-xs sm:text-sm opacity-70 leading-relaxed">
                 Micro-interactions, state updates, and page transitions must feel immediate, tactile, and physically responsive to human touch.
               </p>
@@ -785,13 +791,24 @@ export function HtmlOverlay() {
                     projectDeckScrollRef.current.scrollTo({ left: 0, behavior: 'smooth' })
                   }
                 }}
-                className={`px-5 py-2.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                className={`px-5 py-2.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center gap-2 ${
                   isActive
                     ? 'bg-[#111115] text-[#F4F3EF] shadow-md shadow-black/10'
                     : 'bg-black/5 text-[#111115] hover:bg-black/10 border border-black/10'
                 }`}
               >
-                {project.title} <span className="opacity-60 ml-1">({project.screenshots.length} Screens)</span>
+                <span>{project.title}</span>
+                <span className="opacity-60 text-[11px]">({project.screenshots.length} Screens)</span>
+                {project.liveAlias && (
+                  <span
+                    className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold lowercase tracking-normal flex items-center gap-1 ${
+                      isActive ? 'bg-white/20 text-white' : 'bg-black/10 text-[#111115]'
+                    }`}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                    <span>{project.liveAlias}</span>
+                  </span>
+                )}
               </button>
             )
           })}
@@ -804,13 +821,41 @@ export function HtmlOverlay() {
               <div className="text-xs font-mono uppercase tracking-wider opacity-60 mb-1">
                 {currentProject.number} &bull; {currentProject.discipline}
               </div>
-              <h3 className="text-3xl sm:text-4xl font-black tracking-tight">
-                {currentProject.title}
-              </h3>
+              <div className="flex flex-wrap items-center gap-3">
+                <h3 className="text-3xl sm:text-4xl font-black tracking-tight">
+                  {currentProject.title}
+                </h3>
+                {currentProject.liveUrl && (
+                  <a
+                    href={currentProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-[#111115] text-[#F4F3EF] hover:bg-black/85 transition-all cursor-pointer shadow-sm group"
+                    title={`Open live platform: ${currentProject.liveAlias}`}
+                  >
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>{currentProject.liveAlias}</span>
+                    <span className="text-xs transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                  </a>
+                )}
+              </div>
             </div>
-            <div className="text-xs font-mono opacity-70 flex flex-wrap gap-2">
+            <div className="text-xs font-mono opacity-70 flex flex-wrap gap-2 items-center">
+              {currentProject.liveUrl && (
+                <a
+                  href={currentProject.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3.5 py-1.5 rounded-md text-xs font-mono font-bold tracking-wider uppercase bg-emerald-700/10 text-emerald-950 border border-emerald-700/25 hover:bg-emerald-700/20 transition-all flex items-center gap-1.5 cursor-pointer"
+                  title={`Launch live platform: ${currentProject.liveAlias}`}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+                  <span>Launch Platform ({currentProject.liveAlias})</span>
+                  <span>↗</span>
+                </a>
+              )}
               {currentProject.stack.map((tech) => (
-                <span key={tech} className="px-2.5 py-1 rounded bg-black/5 border border-black/10">
+                <span key={tech} className="px-2.5 py-1.5 rounded bg-black/5 border border-black/10">
                   {tech}
                 </span>
               ))}
@@ -822,11 +867,23 @@ export function HtmlOverlay() {
 
           {/* Interactive Project Deck Control Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 pb-4 border-t border-b border-current/15 text-xs font-mono">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
               <span className="uppercase tracking-wider font-semibold">
                 {isProjectDeckPopped ? 'Interactive Gallery Deck' : 'Physical Project Stack'} &bull; {currentProject.screenshots.length} Screens Verified
               </span>
+              {currentProject.liveUrl && (
+                <a
+                  href={currentProject.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider bg-black/5 hover:bg-black/10 border border-black/15 text-[#111115] transition-colors"
+                  title={`Visit live platform: ${currentProject.liveAlias}`}
+                >
+                  <span>Live: {currentProject.liveAlias}</span>
+                  <span>↗</span>
+                </a>
+              )}
             </div>
 
             <div className="flex items-center gap-3">
@@ -1073,8 +1130,24 @@ export function HtmlOverlay() {
                   <div className="text-xs font-mono opacity-60 md:w-4/12">
                     {project.stack.join(' &bull; ')}
                   </div>
-                  <div className="text-xs font-mono text-right md:w-3/12 uppercase tracking-wider opacity-80 group-hover:underline">
-                    {isActive ? 'Active Selection' : `View ${project.screenshots.length} Screens →`}
+                  <div className="text-xs font-mono text-right md:w-3/12 uppercase tracking-wider opacity-80 flex items-center justify-end gap-3">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="px-2.5 py-1 rounded-full bg-[#111115] text-[#F4F3EF] text-[10px] font-bold hover:bg-black/85 transition-colors flex items-center gap-1.5 cursor-pointer shadow-sm"
+                        title={`Open live site: ${project.liveAlias}`}
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                        <span>{project.liveAlias}</span>
+                        <span>↗</span>
+                      </a>
+                    )}
+                    <span className="group-hover:underline">
+                      {isActive ? 'Active Selection' : `View ${project.screenshots.length} Screens →`}
+                    </span>
                   </div>
                 </div>
               )

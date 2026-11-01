@@ -12,6 +12,8 @@ export const FLAGSHIP_PROJECTS: ProjectItem[] = [
     year: 2026,
     client: 'Independent Project / strovr.space',
     role: 'Creator & Full-Stack Developer',
+    liveUrl: 'https://strovr.space',
+    liveAlias: 'strovr.space',
     tagline: 'Automated Lead Extraction & Bespoke Marketing Sequences',
     description:
       'A platform I designed and engineered from the ground up, featuring dynamic email marketing templates, automated lead extraction via SerpApi, and an intuitive customer relationship management workflow.',
@@ -20,7 +22,7 @@ export const FLAGSHIP_PROJECTS: ProjectItem[] = [
       'Engineered SerpApi query pipeline aggregating high-intent business leads in real-time',
       'Built Express & Node.js backend microservice for template compilation and dispatch',
       'Designed Firebase Firestore real-time pipeline managing contact lists & CRM stages',
-      'Crafted Vite-optimized frontend with sub-100ms routing and instant template previews',
+      'Crafted Vite-optimized frontend with instant routing and template previews',
     ],
     metrics: ['Live on strovr.space', '10x Lead Discovery Speed', 'Real-Time CRM Pipeline'],
     accentColor: '#3b82f6',
@@ -35,6 +37,8 @@ export const FLAGSHIP_PROJECTS: ProjectItem[] = [
     year: 2026,
     client: 'Personal Project',
     role: 'Lead Full-Stack Engineer & UI Architect',
+    liveUrl: 'https://docuready-dev.github.io/LearnReady/',
+    liveAlias: 'learnready.space',
     tagline: 'Structured Curriculum Delivery with Real-Time AI Assessments',
     description:
       'A comprehensive educational web application I conceived and engineered, delivering structured interactive courses and real-time AI-generated assessments tailored to individual student mastery.',
@@ -45,7 +49,7 @@ export const FLAGSHIP_PROJECTS: ProjectItem[] = [
       'Implemented Firebase authentication and real-time student performance analytics',
       'Designed responsive dashboard with Tailwind CSS and fluid micro-interactions',
     ],
-    metrics: ['Structured Course Pathways', 'Real-Time Mastery Scoring', 'Zero-Latency UI'],
+    metrics: ['Live on learnready.space', 'Structured Course Pathways', 'Real-Time Mastery Scoring', 'Zero-Latency UI'],
     accentColor: '#10b981',
   },
   {
