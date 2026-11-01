@@ -5,7 +5,7 @@ import { ProjectShaderPlane } from './ProjectShaderPlane'
 
 const GRID_POSITIONS: [number, number, number][] = [
   [-2.5, 0.5, -34.0],  // 01: Atelier Kinetic (Graphic)
-  [2.5, -0.4, -36.5],  // 02: Kroma Spatial (Graphic)
+  [2.5, -0.4, -36.5],  // 02: Spatial Grid (Graphic)
   [-2.6, -0.2, -39.5], // 03: Hyperion Cloud (Web)
   [2.6, 0.6, -42.2],  // 04: Alabaster Archive (Web)
   [-2.5, 0.4, -45.2],  // 05: Aether OS (App)

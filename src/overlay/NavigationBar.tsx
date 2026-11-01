@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 const NAV_ITEMS = [
   { label: 'About', id: 'hero' },
   { label: 'Approach', id: 'approach' },
-  { label: 'Web', id: 'web' },
+  { label: 'Execution', id: 'execution' },
   { label: 'Apps', id: 'apps' },
   { label: 'Projects', id: 'works' },
   { label: 'Aesthetics', id: 'aesthetics' },
